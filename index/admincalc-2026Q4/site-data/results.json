@@ -1,0 +1,1879 @@
+{
+ "release": "admincalc-2026Q4",
+ "index_name": "AdminCalc-TW",
+ "methodology_version": "0.2.0-draft",
+ "mode": "release",
+ "weights": {
+  "ban_checksum": 1.0,
+  "minguo_year": 1.0
+ },
+ "headline_tiers": [
+  1
+ ],
+ "families": [
+  "ban_checksum",
+  "minguo_year"
+ ],
+ "release_blockers": [],
+ "notes": [
+  "evaluation_target = model@quantization@hardware；不同 target 不合併。",
+  "分母固定為 manifest n；缺題不補 0、不重加權，aggregate 直接 unavailable。",
+  "fake-* target 是 pipeline 驗證用的假 solver，不是模型。",
+  "accuracy 只算非 control 分支（n_scored）；control 分支（對照題）另報 control_pass，不進 headline。",
+  "answer_mode（direct／cot）記在每個 family 的 run 裡；target 命名慣例加 @direct／@cot 後綴，不同 answer_mode 不合併。",
+  "spec_mismatch 非 null 表示該 run 的題目與當期題集不是同一版（family 版本、spec／rule／templates／sampler hash 或產生器版本不同，differs 列出哪幾個），分數照算但應重跑。",
+  "mode=preview 的 index 不是正式 release：release_blockers 列出擋住 release 的項目；mode=release 時該清單必為空。",
+  "pins 的 family_status 由 silver/families/<id>/reviews.yaml 推得：manifest 上的 spec／rule／templates／sampler hash 有對應的 approved 簽核才是 reviewed。",
+  "unavailable 的 target 仍附 family_scores（partial 顯示）：已跑完的 family 各自的 accuracy；不給總分、不進排名。"
+ ],
+ "targets": [
+  {
+   "target": "beam-1.0@api@opencode-free@max",
+   "model": "beam-1.0",
+   "quantization": "api",
+   "hardware": "opencode-free",
+   "answer_mode": "max",
+   "is_fake": false,
+   "splits": {
+    "public": {
+     "score": 0.6799999999999999,
+     "status": "ok",
+     "reason": null,
+     "control_pass": null,
+     "n_control": 0,
+     "family_scores": {
+      "ban_checksum": 0.36,
+      "minguo_year": 1.0
+     },
+     "runs": [
+      {
+       "family": "ban_checksum",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 36,
+       "n_scored": 100,
+       "correct_scored": 36,
+       "accuracy": 0.36,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "C1": {
+         "correct": 0,
+         "n": 10,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "C2": {
+         "correct": 0,
+         "n": 10,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "L1": {
+         "correct": 0,
+         "n": 15,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "L2": {
+         "correct": 7,
+         "n": 15,
+         "accuracy": 0.4666666666666667,
+         "control": false
+        },
+        "V1": {
+         "correct": 3,
+         "n": 8,
+         "accuracy": 0.375,
+         "control": false
+        },
+        "V2": {
+         "correct": 3,
+         "n": 7,
+         "accuracy": 0.42857142857142855,
+         "control": false
+        },
+        "V3": {
+         "correct": 10,
+         "n": 13,
+         "accuracy": 0.7692307692307693,
+         "control": false
+        },
+        "V4": {
+         "correct": 3,
+         "n": 5,
+         "accuracy": 0.6,
+         "control": false
+        },
+        "V5": {
+         "correct": 0,
+         "n": 5,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V6": {
+         "correct": 10,
+         "n": 12,
+         "accuracy": 0.8333333333333334,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T06-52-27-00-00_ban-checksum-admincalc-2026Q4-public_GvoigobFksnfKeXfTBxwvs.eval",
+       "log_sha256": "1c2bd6fd648e31c9ff8f1e0f448572b89e6a5b60779879c4f4ef69c584c6198d",
+       "run_id": "cogAhfEFocfGfRUNNiU9vv",
+       "model": "openai-api/opencode/beam-free",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T06-52-27-00-00_ban-checksum-admincalc-2026Q4-public_GvoigobFksnfKeXfTBxwvs.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      },
+      {
+       "family": "minguo_year",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 100,
+       "n_scored": 100,
+       "correct_scored": 100,
+       "accuracy": 1.0,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "D1": {
+         "correct": 30,
+         "n": 30,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "Y1": {
+         "correct": 40,
+         "n": 40,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "Y2": {
+         "correct": 30,
+         "n": 30,
+         "accuracy": 1.0,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T07-06-07-00-00_minguo-year-admincalc-2026Q4-public_QBjxo8F5wwhLQ2qzRwXzWb.eval",
+       "log_sha256": "099ed118b9eb7252910850a3e57731befb88b1f8c2c494e60734867943dc4de3",
+       "run_id": "GKfs47htpwM4cC9aiC37Ev",
+       "model": "openai-api/opencode/beam-free",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T07-06-07-00-00_minguo-year-admincalc-2026Q4-public_QBjxo8F5wwhLQ2qzRwXzWb.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      }
+     ]
+    }
+   },
+   "public_private_gap": null
+  },
+  {
+   "target": "breeze2-8b@q4ks-gguf@mac-studio-applem1ultra@cot",
+   "model": "breeze2-8b",
+   "quantization": "q4ks-gguf",
+   "hardware": "mac-studio-applem1ultra",
+   "answer_mode": "cot",
+   "is_fake": false,
+   "splits": {
+    "public": {
+     "score": 0.32999999999999996,
+     "status": "ok",
+     "reason": null,
+     "control_pass": null,
+     "n_control": 0,
+     "family_scores": {
+      "ban_checksum": 0.35,
+      "minguo_year": 0.31
+     },
+     "runs": [
+      {
+       "family": "ban_checksum",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 35,
+       "n_scored": 100,
+       "correct_scored": 35,
+       "accuracy": 0.35,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "cot",
+       "by_branch": {
+        "C1": {
+         "correct": 3,
+         "n": 10,
+         "accuracy": 0.3,
+         "control": false
+        },
+        "C2": {
+         "correct": 4,
+         "n": 10,
+         "accuracy": 0.4,
+         "control": false
+        },
+        "L1": {
+         "correct": 2,
+         "n": 15,
+         "accuracy": 0.13333333333333333,
+         "control": false
+        },
+        "L2": {
+         "correct": 5,
+         "n": 15,
+         "accuracy": 0.3333333333333333,
+         "control": false
+        },
+        "V1": {
+         "correct": 2,
+         "n": 8,
+         "accuracy": 0.25,
+         "control": false
+        },
+        "V2": {
+         "correct": 3,
+         "n": 7,
+         "accuracy": 0.42857142857142855,
+         "control": false
+        },
+        "V3": {
+         "correct": 8,
+         "n": 13,
+         "accuracy": 0.6153846153846154,
+         "control": false
+        },
+        "V4": {
+         "correct": 1,
+         "n": 5,
+         "accuracy": 0.2,
+         "control": false
+        },
+        "V5": {
+         "correct": 1,
+         "n": 5,
+         "accuracy": 0.2,
+         "control": false
+        },
+        "V6": {
+         "correct": 6,
+         "n": 12,
+         "accuracy": 0.5,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T08-52-53-00-00_ban-checksum-admincalc-2026Q4-public_HL2fzLToS5xaypAXomu8eF.eval",
+       "log_sha256": "299e26aca21caf2ede595edd289928c19575dd788afb7b8036e1663a99c5414c",
+       "run_id": "ifGaS8ydsHMWFzcuyNYCdM",
+       "model": "openai-api/lmstudio/breeze2-8b",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T08-52-53-00-00_ban-checksum-admincalc-2026Q4-public_HL2fzLToS5xaypAXomu8eF.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      },
+      {
+       "family": "minguo_year",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 31,
+       "n_scored": 100,
+       "correct_scored": 31,
+       "accuracy": 0.31,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "cot",
+       "by_branch": {
+        "D1": {
+         "correct": 9,
+         "n": 30,
+         "accuracy": 0.3,
+         "control": false
+        },
+        "Y1": {
+         "correct": 8,
+         "n": 40,
+         "accuracy": 0.2,
+         "control": false
+        },
+        "Y2": {
+         "correct": 14,
+         "n": 30,
+         "accuracy": 0.4666666666666667,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T09-07-35-00-00_minguo-year-admincalc-2026Q4-public_4xYTtcJLRzuw3Vvnf3R8ZQ.eval",
+       "log_sha256": "ef29977393976b9f5bc774c8fcef894d2602e07d3eab389be66bde641bf4dd81",
+       "run_id": "UucjNZVqqnMCWt3PKmi3Mh",
+       "model": "openai-api/lmstudio/breeze2-8b",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T09-07-35-00-00_minguo-year-admincalc-2026Q4-public_4xYTtcJLRzuw3Vvnf3R8ZQ.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      }
+     ]
+    }
+   },
+   "public_private_gap": null
+  },
+  {
+   "target": "deepseek-v4.1-flash@api@opencode@max",
+   "model": "deepseek-v4.1-flash",
+   "quantization": "api",
+   "hardware": "opencode",
+   "answer_mode": "max",
+   "is_fake": false,
+   "splits": {
+    "public": {
+     "score": 0.855,
+     "status": "ok",
+     "reason": null,
+     "control_pass": null,
+     "n_control": 0,
+     "family_scores": {
+      "ban_checksum": 0.71,
+      "minguo_year": 1.0
+     },
+     "runs": [
+      {
+       "family": "ban_checksum",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 71,
+       "n_scored": 100,
+       "correct_scored": 71,
+       "accuracy": 0.71,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "C1": {
+         "correct": 5,
+         "n": 10,
+         "accuracy": 0.5,
+         "control": false
+        },
+        "C2": {
+         "correct": 4,
+         "n": 10,
+         "accuracy": 0.4,
+         "control": false
+        },
+        "L1": {
+         "correct": 7,
+         "n": 15,
+         "accuracy": 0.4666666666666667,
+         "control": false
+        },
+        "L2": {
+         "correct": 14,
+         "n": 15,
+         "accuracy": 0.9333333333333333,
+         "control": false
+        },
+        "V1": {
+         "correct": 8,
+         "n": 8,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "V2": {
+         "correct": 2,
+         "n": 7,
+         "accuracy": 0.2857142857142857,
+         "control": false
+        },
+        "V3": {
+         "correct": 12,
+         "n": 13,
+         "accuracy": 0.9230769230769231,
+         "control": false
+        },
+        "V4": {
+         "correct": 5,
+         "n": 5,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "V5": {
+         "correct": 2,
+         "n": 5,
+         "accuracy": 0.4,
+         "control": false
+        },
+        "V6": {
+         "correct": 12,
+         "n": 12,
+         "accuracy": 1.0,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T06-52-27-00-00_ban-checksum-admincalc-2026Q4-public_mTUXSfernHeuba3NvN6FB7.eval",
+       "log_sha256": "aeef09e043d4905ef2698639f79a4331a7805cf72de8d44c2e078938d5cf43e7",
+       "run_id": "DUQKRWn5NwDYyAwzHYJ65J",
+       "model": "openai-api/opencode/deepseek-v4.1-flash",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T06-52-27-00-00_ban-checksum-admincalc-2026Q4-public_mTUXSfernHeuba3NvN6FB7.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      },
+      {
+       "family": "minguo_year",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 100,
+       "n_scored": 100,
+       "correct_scored": 100,
+       "accuracy": 1.0,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "D1": {
+         "correct": 30,
+         "n": 30,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "Y1": {
+         "correct": 40,
+         "n": 40,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "Y2": {
+         "correct": 30,
+         "n": 30,
+         "accuracy": 1.0,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T07-14-30-00-00_minguo-year-admincalc-2026Q4-public_2cuQr8gQRPSPzEgh4b3oAZ.eval",
+       "log_sha256": "7c0159615a82adafedd924199750fdd1d4a067f5f3302f01e628d8bceba04e69",
+       "run_id": "oAWJ7QMLVXTBGERVPYF6aS",
+       "model": "openai-api/opencode/deepseek-v4.1-flash",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T07-14-30-00-00_minguo-year-admincalc-2026Q4-public_2cuQr8gQRPSPzEgh4b3oAZ.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      }
+     ]
+    }
+   },
+   "public_private_gap": null
+  },
+  {
+   "target": "fake-naive@none@none@direct",
+   "model": "fake-naive",
+   "quantization": "none",
+   "hardware": "none",
+   "answer_mode": "direct",
+   "is_fake": true,
+   "splits": {
+    "public": {
+     "score": 0.265,
+     "status": "ok",
+     "reason": null,
+     "control_pass": null,
+     "n_control": 0,
+     "family_scores": {
+      "ban_checksum": 0.53,
+      "minguo_year": 0.0
+     },
+     "runs": [
+      {
+       "family": "ban_checksum",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 53,
+       "n_scored": 100,
+       "correct_scored": 53,
+       "accuracy": 0.53,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "C1": {
+         "correct": 0,
+         "n": 10,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "C2": {
+         "correct": 0,
+         "n": 10,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "L1": {
+         "correct": 0,
+         "n": 15,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "L2": {
+         "correct": 15,
+         "n": 15,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "V1": {
+         "correct": 8,
+         "n": 8,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "V2": {
+         "correct": 0,
+         "n": 7,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V3": {
+         "correct": 13,
+         "n": 13,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "V4": {
+         "correct": 5,
+         "n": 5,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "V5": {
+         "correct": 0,
+         "n": 5,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V6": {
+         "correct": 12,
+         "n": 12,
+         "accuracy": 1.0,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T06-41-12-00-00_ban-checksum-admincalc-2026Q4-public_6mJ5KRgB9WMg2YYaMRbVEo.eval",
+       "log_sha256": "007ed275bf4d29fbd67a0c1f6c89e75461195a12865afb2422cac36ac20adaa5",
+       "run_id": "Lv7HhqMZEAU3S29NrozQA4",
+       "model": "mockllm/model",
+       "fake": "naive",
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T06-41-12-00-00_ban-checksum-admincalc-2026Q4-public_6mJ5KRgB9WMg2YYaMRbVEo.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      },
+      {
+       "family": "minguo_year",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 0,
+       "n_scored": 100,
+       "correct_scored": 0,
+       "accuracy": 0.0,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "D1": {
+         "correct": 0,
+         "n": 30,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "Y1": {
+         "correct": 0,
+         "n": 40,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "Y2": {
+         "correct": 0,
+         "n": 30,
+         "accuracy": 0.0,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T06-41-16-00-00_minguo-year-admincalc-2026Q4-public_VXcNgzbJ3u2bDEesrdS8XQ.eval",
+       "log_sha256": "e31b091bdf5e653b528a8ea5756472e0cdb97fbfe0346954971d6cec3955fd5a",
+       "run_id": "Bkjheh5nUoinoJfRZVwPKW",
+       "model": "mockllm/model",
+       "fake": "naive",
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T06-41-16-00-00_minguo-year-admincalc-2026Q4-public_VXcNgzbJ3u2bDEesrdS8XQ.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      }
+     ]
+    }
+   },
+   "public_private_gap": null
+  },
+  {
+   "target": "fake-oracle@none@none@direct",
+   "model": "fake-oracle",
+   "quantization": "none",
+   "hardware": "none",
+   "answer_mode": "direct",
+   "is_fake": true,
+   "splits": {
+    "public": {
+     "score": 1.0,
+     "status": "ok",
+     "reason": null,
+     "control_pass": null,
+     "n_control": 0,
+     "family_scores": {
+      "ban_checksum": 1.0,
+      "minguo_year": 1.0
+     },
+     "runs": [
+      {
+       "family": "ban_checksum",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 100,
+       "n_scored": 100,
+       "correct_scored": 100,
+       "accuracy": 1.0,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "C1": {
+         "correct": 10,
+         "n": 10,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "C2": {
+         "correct": 10,
+         "n": 10,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "L1": {
+         "correct": 15,
+         "n": 15,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "L2": {
+         "correct": 15,
+         "n": 15,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "V1": {
+         "correct": 8,
+         "n": 8,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "V2": {
+         "correct": 7,
+         "n": 7,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "V3": {
+         "correct": 13,
+         "n": 13,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "V4": {
+         "correct": 5,
+         "n": 5,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "V5": {
+         "correct": 5,
+         "n": 5,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "V6": {
+         "correct": 12,
+         "n": 12,
+         "accuracy": 1.0,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T06-41-03-00-00_ban-checksum-admincalc-2026Q4-public_9ETDKUcTPhgxm7zUNDhBjy.eval",
+       "log_sha256": "d947e9cb80a2c0a7d15de6c444a7a20a0b243525f552335b25ba9785272ba90c",
+       "run_id": "JKMpMrEWtBe7Aqjje9fvBk",
+       "model": "mockllm/model",
+       "fake": "oracle",
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T06-41-03-00-00_ban-checksum-admincalc-2026Q4-public_9ETDKUcTPhgxm7zUNDhBjy.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      },
+      {
+       "family": "minguo_year",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 100,
+       "n_scored": 100,
+       "correct_scored": 100,
+       "accuracy": 1.0,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "D1": {
+         "correct": 30,
+         "n": 30,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "Y1": {
+         "correct": 40,
+         "n": 40,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "Y2": {
+         "correct": 30,
+         "n": 30,
+         "accuracy": 1.0,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T06-41-08-00-00_minguo-year-admincalc-2026Q4-public_nir5c8jEY8woagsSpMHRSd.eval",
+       "log_sha256": "d8c1e0676082f3a1d3b10bc2bd2cd8bdb37748239a552346723ab14d20f1a0cf",
+       "run_id": "jCaMrir8XCa8z5d7oiQo6F",
+       "model": "mockllm/model",
+       "fake": "oracle",
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T06-41-08-00-00_minguo-year-admincalc-2026Q4-public_nir5c8jEY8woagsSpMHRSd.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      }
+     ]
+    }
+   },
+   "public_private_gap": null
+  },
+  {
+   "target": "fake-random@none@none@direct",
+   "model": "fake-random",
+   "quantization": "none",
+   "hardware": "none",
+   "answer_mode": "direct",
+   "is_fake": true,
+   "splits": {
+    "public": {
+     "score": 0.0,
+     "status": "ok",
+     "reason": null,
+     "control_pass": null,
+     "n_control": 0,
+     "family_scores": {
+      "ban_checksum": 0.0,
+      "minguo_year": 0.0
+     },
+     "runs": [
+      {
+       "family": "ban_checksum",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 0,
+       "n_scored": 100,
+       "correct_scored": 0,
+       "accuracy": 0.0,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "C1": {
+         "correct": 0,
+         "n": 10,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "C2": {
+         "correct": 0,
+         "n": 10,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "L1": {
+         "correct": 0,
+         "n": 15,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "L2": {
+         "correct": 0,
+         "n": 15,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V1": {
+         "correct": 0,
+         "n": 8,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V2": {
+         "correct": 0,
+         "n": 7,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V3": {
+         "correct": 0,
+         "n": 13,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V4": {
+         "correct": 0,
+         "n": 5,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V5": {
+         "correct": 0,
+         "n": 5,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V6": {
+         "correct": 0,
+         "n": 12,
+         "accuracy": 0.0,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T06-41-20-00-00_ban-checksum-admincalc-2026Q4-public_PUGneVLSdJTzyCP3xG28LJ.eval",
+       "log_sha256": "531040d62c5d8cb6a4ce0e0b5b70ba5dd64c93a91ffc0d7e04db03242ec2f842",
+       "run_id": "ce3mtZaY9uZkCq2Xm63P5g",
+       "model": "mockllm/model",
+       "fake": "random",
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T06-41-20-00-00_ban-checksum-admincalc-2026Q4-public_PUGneVLSdJTzyCP3xG28LJ.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      },
+      {
+       "family": "minguo_year",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 0,
+       "n_scored": 100,
+       "correct_scored": 0,
+       "accuracy": 0.0,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "D1": {
+         "correct": 0,
+         "n": 30,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "Y1": {
+         "correct": 0,
+         "n": 40,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "Y2": {
+         "correct": 0,
+         "n": 30,
+         "accuracy": 0.0,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T06-41-24-00-00_minguo-year-admincalc-2026Q4-public_2hLMkmzavxnRzewGT3kT93.eval",
+       "log_sha256": "d65ab5f7964317d2226c385d0015e4ed827e5ba70d1fa1ad886532eb3480a8a3",
+       "run_id": "QxVkgCBHn8Dc7JmnpdLPTM",
+       "model": "mockllm/model",
+       "fake": "random",
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T06-41-24-00-00_minguo-year-admincalc-2026Q4-public_2hLMkmzavxnRzewGT3kT93.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      }
+     ]
+    }
+   },
+   "public_private_gap": null
+  },
+  {
+   "target": "flint-1.0@api@openrouter-free@max",
+   "model": "flint-1.0",
+   "quantization": "api",
+   "hardware": "openrouter-free",
+   "answer_mode": "max",
+   "is_fake": false,
+   "splits": {
+    "public": {
+     "score": 0.5549999999999999,
+     "status": "ok",
+     "reason": null,
+     "control_pass": null,
+     "n_control": 0,
+     "family_scores": {
+      "ban_checksum": 0.29,
+      "minguo_year": 0.82
+     },
+     "runs": [
+      {
+       "family": "ban_checksum",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 29,
+       "n_scored": 100,
+       "correct_scored": 29,
+       "accuracy": 0.29,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "C1": {
+         "correct": 1,
+         "n": 10,
+         "accuracy": 0.1,
+         "control": false
+        },
+        "C2": {
+         "correct": 0,
+         "n": 10,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "L1": {
+         "correct": 0,
+         "n": 15,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "L2": {
+         "correct": 5,
+         "n": 15,
+         "accuracy": 0.3333333333333333,
+         "control": false
+        },
+        "V1": {
+         "correct": 3,
+         "n": 8,
+         "accuracy": 0.375,
+         "control": false
+        },
+        "V2": {
+         "correct": 0,
+         "n": 7,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V3": {
+         "correct": 10,
+         "n": 13,
+         "accuracy": 0.7692307692307693,
+         "control": false
+        },
+        "V4": {
+         "correct": 0,
+         "n": 5,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V5": {
+         "correct": 0,
+         "n": 5,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V6": {
+         "correct": 10,
+         "n": 12,
+         "accuracy": 0.8333333333333334,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T08-52-22-00-00_ban-checksum-admincalc-2026Q4-public_bbmr5eGVTtXGz9PZ35SB9W.eval",
+       "log_sha256": "08184ad9d1829533e098c9176046f2bdc848f68e5c4f2490de5d177723ab1641",
+       "run_id": "VP8yF6AevfweADf6PsyeoS",
+       "model": "openai-api/openrouter/recursive/flint-v1.0:free",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T08-52-22-00-00_ban-checksum-admincalc-2026Q4-public_bbmr5eGVTtXGz9PZ35SB9W.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      },
+      {
+       "family": "minguo_year",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 82,
+       "n_scored": 100,
+       "correct_scored": 82,
+       "accuracy": 0.82,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "D1": {
+         "correct": 24,
+         "n": 30,
+         "accuracy": 0.8,
+         "control": false
+        },
+        "Y1": {
+         "correct": 34,
+         "n": 40,
+         "accuracy": 0.85,
+         "control": false
+        },
+        "Y2": {
+         "correct": 24,
+         "n": 30,
+         "accuracy": 0.8,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T09-36-54-00-00_minguo-year-admincalc-2026Q4-public_epbPECdwd8926vnVUCe8kN.eval",
+       "log_sha256": "66375955854feb49fb8d7c6dadf7f6be2794cd5043e9e9954b40c197e519fb93",
+       "run_id": "WodT5Gdxr4fQsommGe8mnY",
+       "model": "openai-api/openrouter/recursive/flint-v1.0:free",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T09-36-54-00-00_minguo-year-admincalc-2026Q4-public_epbPECdwd8926vnVUCe8kN.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      }
+     ]
+    }
+   },
+   "public_private_gap": null
+  },
+  {
+   "target": "glm-5.3-flash@api@opencode@max",
+   "model": "glm-5.3-flash",
+   "quantization": "api",
+   "hardware": "opencode",
+   "answer_mode": "max",
+   "is_fake": false,
+   "splits": {
+    "public": {
+     "score": 0.75,
+     "status": "ok",
+     "reason": null,
+     "control_pass": null,
+     "n_control": 0,
+     "family_scores": {
+      "ban_checksum": 0.5,
+      "minguo_year": 1.0
+     },
+     "runs": [
+      {
+       "family": "ban_checksum",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 50,
+       "n_scored": 100,
+       "correct_scored": 50,
+       "accuracy": 0.5,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "C1": {
+         "correct": 1,
+         "n": 10,
+         "accuracy": 0.1,
+         "control": false
+        },
+        "C2": {
+         "correct": 1,
+         "n": 10,
+         "accuracy": 0.1,
+         "control": false
+        },
+        "L1": {
+         "correct": 1,
+         "n": 15,
+         "accuracy": 0.06666666666666667,
+         "control": false
+        },
+        "L2": {
+         "correct": 11,
+         "n": 15,
+         "accuracy": 0.7333333333333333,
+         "control": false
+        },
+        "V1": {
+         "correct": 8,
+         "n": 8,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "V2": {
+         "correct": 2,
+         "n": 7,
+         "accuracy": 0.2857142857142857,
+         "control": false
+        },
+        "V3": {
+         "correct": 13,
+         "n": 13,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "V4": {
+         "correct": 4,
+         "n": 5,
+         "accuracy": 0.8,
+         "control": false
+        },
+        "V5": {
+         "correct": 0,
+         "n": 5,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V6": {
+         "correct": 9,
+         "n": 12,
+         "accuracy": 0.75,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T06-52-27-00-00_ban-checksum-admincalc-2026Q4-public_QQ2CNs6anM3764Cri8scnn.eval",
+       "log_sha256": "41781c50c5921df008c89e89ae1af10b34dd103ea44c2295b121ed01e1240b5e",
+       "run_id": "WfL9to5eff6Ce5jmpiRk2D",
+       "model": "openai-api/opencode/glm-5.3-flash",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T06-52-27-00-00_ban-checksum-admincalc-2026Q4-public_QQ2CNs6anM3764Cri8scnn.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      },
+      {
+       "family": "minguo_year",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 100,
+       "n_scored": 100,
+       "correct_scored": 100,
+       "accuracy": 1.0,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "D1": {
+         "correct": 30,
+         "n": 30,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "Y1": {
+         "correct": 40,
+         "n": 40,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "Y2": {
+         "correct": 30,
+         "n": 30,
+         "accuracy": 1.0,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T07-20-56-00-00_minguo-year-admincalc-2026Q4-public_HbnuXg6R6hQmkdDAeREWQv.eval",
+       "log_sha256": "df4ea32f262aaef21c73f8c359df56716d01e5370fff1e2f2ba6f71a440a4de1",
+       "run_id": "M7L3QAZFeiCzqx9foorwuq",
+       "model": "openai-api/opencode/glm-5.3-flash",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T07-20-56-00-00_minguo-year-admincalc-2026Q4-public_HbnuXg6R6hQmkdDAeREWQv.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      }
+     ]
+    }
+   },
+   "public_private_gap": null
+  },
+  {
+   "target": "gpt-oss-20b@mxfp4@openrouter@max",
+   "model": "gpt-oss-20b",
+   "quantization": "mxfp4",
+   "hardware": "openrouter",
+   "answer_mode": "max",
+   "is_fake": false,
+   "splits": {
+    "public": {
+     "score": 0.66,
+     "status": "ok",
+     "reason": null,
+     "control_pass": null,
+     "n_control": 0,
+     "family_scores": {
+      "ban_checksum": 0.34,
+      "minguo_year": 0.98
+     },
+     "runs": [
+      {
+       "family": "ban_checksum",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 34,
+       "n_scored": 100,
+       "correct_scored": 34,
+       "accuracy": 0.34,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "C1": {
+         "correct": 0,
+         "n": 10,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "C2": {
+         "correct": 1,
+         "n": 10,
+         "accuracy": 0.1,
+         "control": false
+        },
+        "L1": {
+         "correct": 2,
+         "n": 15,
+         "accuracy": 0.13333333333333333,
+         "control": false
+        },
+        "L2": {
+         "correct": 4,
+         "n": 15,
+         "accuracy": 0.26666666666666666,
+         "control": false
+        },
+        "V1": {
+         "correct": 1,
+         "n": 8,
+         "accuracy": 0.125,
+         "control": false
+        },
+        "V2": {
+         "correct": 2,
+         "n": 7,
+         "accuracy": 0.2857142857142857,
+         "control": false
+        },
+        "V3": {
+         "correct": 13,
+         "n": 13,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "V4": {
+         "correct": 0,
+         "n": 5,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V5": {
+         "correct": 0,
+         "n": 5,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V6": {
+         "correct": 11,
+         "n": 12,
+         "accuracy": 0.9166666666666666,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T09-15-05-00-00_ban-checksum-admincalc-2026Q4-public_buzyZbkyAZcH7Ft3u85k6H.eval",
+       "log_sha256": "ad0ef8af9523a8e38e0a5345710863e9ee753da3667902ac99a4792b5b1e5077",
+       "run_id": "faA5PWsv2sJSHfKJLb5SiH",
+       "model": "openai-api/openrouter/openai/gpt-oss-20b",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T09-15-05-00-00_ban-checksum-admincalc-2026Q4-public_buzyZbkyAZcH7Ft3u85k6H.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      },
+      {
+       "family": "minguo_year",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 98,
+       "n_scored": 100,
+       "correct_scored": 98,
+       "accuracy": 0.98,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "D1": {
+         "correct": 30,
+         "n": 30,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "Y1": {
+         "correct": 39,
+         "n": 40,
+         "accuracy": 0.975,
+         "control": false
+        },
+        "Y2": {
+         "correct": 29,
+         "n": 30,
+         "accuracy": 0.9666666666666667,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T09-25-50-00-00_minguo-year-admincalc-2026Q4-public_LvV7vAs6A9v5mufyBcKjb5.eval",
+       "log_sha256": "dc42210b3c083526af3064e41ee35cdba736be6657d6642903ddd84f0a31f35c",
+       "run_id": "nys3VikYHL64G4mamTBAFh",
+       "model": "openai-api/openrouter/openai/gpt-oss-20b",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T09-25-50-00-00_minguo-year-admincalc-2026Q4-public_LvV7vAs6A9v5mufyBcKjb5.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      }
+     ]
+    }
+   },
+   "public_private_gap": null
+  },
+  {
+   "target": "qwen3.8-27b@api@bailian@max",
+   "model": "qwen3.8-27b",
+   "quantization": "api",
+   "hardware": "bailian",
+   "answer_mode": "max",
+   "is_fake": false,
+   "splits": {
+    "public": {
+     "score": 0.62,
+     "status": "ok",
+     "reason": null,
+     "control_pass": null,
+     "n_control": 0,
+     "family_scores": {
+      "ban_checksum": 0.27,
+      "minguo_year": 0.97
+     },
+     "runs": [
+      {
+       "family": "ban_checksum",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 27,
+       "n_scored": 100,
+       "correct_scored": 27,
+       "accuracy": 0.27,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "C1": {
+         "correct": 2,
+         "n": 10,
+         "accuracy": 0.2,
+         "control": false
+        },
+        "C2": {
+         "correct": 0,
+         "n": 10,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "L1": {
+         "correct": 0,
+         "n": 15,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "L2": {
+         "correct": 2,
+         "n": 15,
+         "accuracy": 0.13333333333333333,
+         "control": false
+        },
+        "V1": {
+         "correct": 0,
+         "n": 8,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V2": {
+         "correct": 0,
+         "n": 7,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V3": {
+         "correct": 11,
+         "n": 13,
+         "accuracy": 0.8461538461538461,
+         "control": false
+        },
+        "V4": {
+         "correct": 0,
+         "n": 5,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V5": {
+         "correct": 1,
+         "n": 5,
+         "accuracy": 0.2,
+         "control": false
+        },
+        "V6": {
+         "correct": 11,
+         "n": 12,
+         "accuracy": 0.9166666666666666,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T12-51-56-00-00_ban-checksum-admincalc-2026Q4-public_2VDkwv3iQQwTwL5Hfa7rPi.eval",
+       "log_sha256": "f80584a0325c1e822b12cd1717707e8739542200122bf3f286719cfd592a44fc",
+       "run_id": "d39VNzrtagmt35kKhDPVzi",
+       "model": "openai-api/antgroup/qwen3.8-27b",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T12-51-56-00-00_ban-checksum-admincalc-2026Q4-public_2VDkwv3iQQwTwL5Hfa7rPi.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      },
+      {
+       "family": "minguo_year",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 97,
+       "n_scored": 100,
+       "correct_scored": 97,
+       "accuracy": 0.97,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "D1": {
+         "correct": 28,
+         "n": 30,
+         "accuracy": 0.9333333333333333,
+         "control": false
+        },
+        "Y1": {
+         "correct": 39,
+         "n": 40,
+         "accuracy": 0.975,
+         "control": false
+        },
+        "Y2": {
+         "correct": 30,
+         "n": 30,
+         "accuracy": 1.0,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T14-07-45-00-00_minguo-year-admincalc-2026Q4-public_WwSshdhEzYD2matipN8aTh.eval",
+       "log_sha256": "f9608942d3f97dbc1ad7b990126a3b025878043d53a754995225dc916223147a",
+       "run_id": "XVrvcbNmEvojPBRzZZvD9v",
+       "model": "openai-api/antgroup/qwen3.8-27b",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T14-07-45-00-00_minguo-year-admincalc-2026Q4-public_WwSshdhEzYD2matipN8aTh.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      }
+     ]
+    }
+   },
+   "public_private_gap": null
+  },
+  {
+   "target": "qwen3.8-flash@api@bailian@max",
+   "model": "qwen3.8-flash",
+   "quantization": "api",
+   "hardware": "bailian",
+   "answer_mode": "max",
+   "is_fake": false,
+   "splits": {
+    "public": {
+     "score": 0.645,
+     "status": "ok",
+     "reason": null,
+     "control_pass": null,
+     "n_control": 0,
+     "family_scores": {
+      "ban_checksum": 0.32,
+      "minguo_year": 0.97
+     },
+     "runs": [
+      {
+       "family": "ban_checksum",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 32,
+       "n_scored": 100,
+       "correct_scored": 32,
+       "accuracy": 0.32,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "C1": {
+         "correct": 2,
+         "n": 10,
+         "accuracy": 0.2,
+         "control": false
+        },
+        "C2": {
+         "correct": 2,
+         "n": 10,
+         "accuracy": 0.2,
+         "control": false
+        },
+        "L1": {
+         "correct": 0,
+         "n": 15,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "L2": {
+         "correct": 6,
+         "n": 15,
+         "accuracy": 0.4,
+         "control": false
+        },
+        "V1": {
+         "correct": 2,
+         "n": 8,
+         "accuracy": 0.25,
+         "control": false
+        },
+        "V2": {
+         "correct": 0,
+         "n": 7,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V3": {
+         "correct": 9,
+         "n": 13,
+         "accuracy": 0.6923076923076923,
+         "control": false
+        },
+        "V4": {
+         "correct": 0,
+         "n": 5,
+         "accuracy": 0.0,
+         "control": false
+        },
+        "V5": {
+         "correct": 2,
+         "n": 5,
+         "accuracy": 0.4,
+         "control": false
+        },
+        "V6": {
+         "correct": 9,
+         "n": 12,
+         "accuracy": 0.75,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T10-25-50-00-00_ban-checksum-admincalc-2026Q4-public_DgFbq3bQuHNTPELG5EBDmT.eval",
+       "log_sha256": "a77143d46717363bbae35df2b5db6429f7dd092bfd69c4f8e5197994fb5f82a6",
+       "run_id": "6xWZgcGaHAwskgkQeom85i",
+       "model": "openai-api/antgroup/qwen3.8-flash",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T10-25-50-00-00_ban-checksum-admincalc-2026Q4-public_DgFbq3bQuHNTPELG5EBDmT.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      },
+      {
+       "family": "minguo_year",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 97,
+       "n_scored": 100,
+       "correct_scored": 97,
+       "accuracy": 0.97,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "direct",
+       "by_branch": {
+        "D1": {
+         "correct": 27,
+         "n": 30,
+         "accuracy": 0.9,
+         "control": false
+        },
+        "Y1": {
+         "correct": 40,
+         "n": 40,
+         "accuracy": 1.0,
+         "control": false
+        },
+        "Y2": {
+         "correct": 30,
+         "n": 30,
+         "accuracy": 1.0,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T11-59-55-00-00_minguo-year-admincalc-2026Q4-public_nMbix6EDVGKoopeFdTNqFL.eval",
+       "log_sha256": "1cb9ac17cec35f61b4bb9af3774aa58b2b5edc5b793734c2d54c7ab26c56557a",
+       "run_id": "Uh23DCHVF8VAdGZbXVyUwa",
+       "model": "openai-api/antgroup/qwen3.8-flash",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T11-59-55-00-00_minguo-year-admincalc-2026Q4-public_nMbix6EDVGKoopeFdTNqFL.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      }
+     ]
+    }
+   },
+   "public_private_gap": null
+  },
+  {
+   "target": "taide-12b-2602@q4km-gguf@mac-studio-applem1ultra@cot",
+   "model": "taide-12b-2602",
+   "quantization": "q4km-gguf",
+   "hardware": "mac-studio-applem1ultra",
+   "answer_mode": "cot",
+   "is_fake": false,
+   "splits": {
+    "public": {
+     "score": 0.535,
+     "status": "ok",
+     "reason": null,
+     "control_pass": null,
+     "n_control": 0,
+     "family_scores": {
+      "ban_checksum": 0.28,
+      "minguo_year": 0.79
+     },
+     "runs": [
+      {
+       "family": "ban_checksum",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 28,
+       "n_scored": 100,
+       "correct_scored": 28,
+       "accuracy": 0.28,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "cot",
+       "by_branch": {
+        "C1": {
+         "correct": 2,
+         "n": 10,
+         "accuracy": 0.2,
+         "control": false
+        },
+        "C2": {
+         "correct": 1,
+         "n": 10,
+         "accuracy": 0.1,
+         "control": false
+        },
+        "L1": {
+         "correct": 1,
+         "n": 15,
+         "accuracy": 0.06666666666666667,
+         "control": false
+        },
+        "L2": {
+         "correct": 5,
+         "n": 15,
+         "accuracy": 0.3333333333333333,
+         "control": false
+        },
+        "V1": {
+         "correct": 3,
+         "n": 8,
+         "accuracy": 0.375,
+         "control": false
+        },
+        "V2": {
+         "correct": 3,
+         "n": 7,
+         "accuracy": 0.42857142857142855,
+         "control": false
+        },
+        "V3": {
+         "correct": 5,
+         "n": 13,
+         "accuracy": 0.38461538461538464,
+         "control": false
+        },
+        "V4": {
+         "correct": 2,
+         "n": 5,
+         "accuracy": 0.4,
+         "control": false
+        },
+        "V5": {
+         "correct": 1,
+         "n": 5,
+         "accuracy": 0.2,
+         "control": false
+        },
+        "V6": {
+         "correct": 5,
+         "n": 12,
+         "accuracy": 0.4166666666666667,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T09-10-42-00-00_ban-checksum-admincalc-2026Q4-public_gTYeGH6YNTxYbaVj9MqPUS.eval",
+       "log_sha256": "fcf21e47dfbefae1cdd560e7bbe6df458f3ce2a746e9de9924ecf01c6ac01590",
+       "run_id": "Eq2YWWdiDhT6Qr7d2RXgap",
+       "model": "openai-api/lmstudio/taide-12b-2602",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T09-10-42-00-00_ban-checksum-admincalc-2026Q4-public_gTYeGH6YNTxYbaVj9MqPUS.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      },
+      {
+       "family": "minguo_year",
+       "n": 100,
+       "expected_n": 100,
+       "correct": 79,
+       "n_scored": 100,
+       "correct_scored": 79,
+       "accuracy": 0.79,
+       "n_control": 0,
+       "correct_control": 0,
+       "control_pass": null,
+       "complete": true,
+       "tier": 1,
+       "answer_mode": "cot",
+       "by_branch": {
+        "D1": {
+         "correct": 24,
+         "n": 30,
+         "accuracy": 0.8,
+         "control": false
+        },
+        "Y1": {
+         "correct": 36,
+         "n": 40,
+         "accuracy": 0.9,
+         "control": false
+        },
+        "Y2": {
+         "correct": 19,
+         "n": 30,
+         "accuracy": 0.6333333333333333,
+         "control": false
+        }
+       },
+       "log_file": "2026-11-16T09-24-56-00-00_minguo-year-admincalc-2026Q4-public_BGJybSy5iNaoKoaRQZvGiA.eval",
+       "log_sha256": "d1ba5463d9a446afad37987416a3343b769c676507f2a7933ee0f6dfe8342892",
+       "run_id": "mNeDKGoGoX9KyCHDMN9SCc",
+       "model": "openai-api/lmstudio/taide-12b-2602",
+       "fake": null,
+       "log_path": "eval/logs/admincalc-2026Q4/2026-11-16T09-24-56-00-00_minguo-year-admincalc-2026Q4-public_BGJybSy5iNaoKoaRQZvGiA.eval",
+       "log_withheld": false,
+       "stale": false,
+       "stale_fields": []
+      }
+     ]
+    }
+   },
+   "public_private_gap": null
+  }
+ ]
+}

@@ -1,0 +1,126 @@
+# minguo_year 題幹模板（2026-11-13 草稿，0.1.1 依 Calvin 的裁定改寫 A06；待 Calvin 逐條簽核）
+# 佔位符：
+#   {roc}   民國年的數字；民國 1 年是「元」，模板寫成「民國{roc}年」就會是「民國元年」
+#   {ad}    西元年的數字
+#   {date}  完整的民國日期，例如「民國115年3月1日」或「中華民國115年3月1日」（sampler.py 的 DATE_STYLES）
+#   {doc}   年份或日期出現的文件；{form} 要填民國年的表格；{name} 姓名
+#   數字是半形或全形阿拉伯數字（sampler.py 的 NUMBER_STYLES）。國字數字不出（spec scope.excludes）。
+# 每個模板標 register（formal / casual）；implicit 表示題幹沒有寫「換算成西元」這類明確指令，只用情境問。
+# 西元→民國題的答案可能是 1（民國元年）：answer_instruction 要求阿拉伯數字，避免模型回答「元年」而抽不到整數。
+
+answer_instruction: 請只回答一個整數（阿拉伯數字），不要附任何單位或說明。
+
+# 刻意配對（TAI-647）：templates 池（Y1，民國→西元）一般題中 rate 比例組成 size 題一組，同年份、不同模板，標 pair_id。
+# 產生器只在 templates 池配對，Y1 占全部題目的 40%：每 split 200 題時 16 組（tests/test_generate_diversity.py 的下限是 15），100 題時 8 組。
+pairing:
+  rate: 0.4
+  size: 2
+
+# Y1：民國年 → 西元年
+templates:
+  - id: T01
+    register: formal
+    text: "{doc}上記載的年份是民國{roc}年。請問民國{roc}年是西元哪一年？"
+  - id: T02
+    register: formal
+    text: "{name}看到{doc}上寫著民國{roc}年，想換算成西元年份。民國{roc}年是西元幾年？"
+  - id: T03
+    register: casual
+    text: "{doc}上面寫民國{roc}年，換成西元是哪一年？"
+  - id: T04
+    register: formal
+    style: developer
+    text: "工程師{name}要把{doc}上的民國年轉成西元年存進資料庫。輸入是民國{roc}年，應該轉成西元哪一年？"
+  - id: T05
+    register: formal
+    style: qa
+    text: "【生活Q&A】問：{doc}上的「民國{roc}年」是西元幾年？"
+  - id: T06
+    register: formal
+    style: hr
+    text: "人資{name}整理員工資料時，看到{doc}上的年份是民國{roc}年。依民國紀年換算，這是西元哪一年？"
+  - id: T07
+    register: casual
+    style: line
+    text: "欸～{doc}上面寫民國{roc}年，那是西元幾年啊？"
+  - id: T08
+    register: formal
+    style: distractor
+    text: "{doc}上寫著民國{roc}年，旁邊還有編號第 3 號、頁碼第 12 頁。只看年份，民國{roc}年是西元哪一年？"
+  - id: T09
+    register: formal
+    text: "請把{doc}上的民國{roc}年換算成西元年份。"
+  # T10 不寫「換算」，只問那一年在西元曆上是哪一年
+  - id: T10
+    register: casual
+    implicit: true
+    style: implicit
+    text: "{name}在幫長輩看{doc}，上面的年份是民國{roc}年。那一年用西元來說是哪一年？"
+
+# Y2：西元年 → 民國年
+ad_templates:
+  - id: A01
+    register: formal
+    text: "{form}的年份要用民國紀年填寫。西元{ad}年應該填民國幾年？"
+  - id: A02
+    register: formal
+    text: "{name}要在{form}上填年份，但只記得是西元{ad}年。換成民國紀年是民國幾年？"
+  - id: A03
+    register: casual
+    text: "{form}要寫民國年，西元{ad}年是民國幾年？"
+  - id: A04
+    register: formal
+    style: developer
+    text: "工程師{name}要把西元年轉成民國年，印在{form}上。輸入西元{ad}年，輸出應該是民國幾年？"
+  - id: A05
+    register: formal
+    style: qa
+    text: "【生活Q&A】問：填寫{form}時，西元{ad}年要寫成民國幾年？"
+  # A06 原本問「西元{ad}年出生的人」的出生年；未來年份會變成未出生的人，0.1.1 改成不限年份的情境（Calvin 2026-11-13）
+  - id: A06
+    register: formal
+    text: "{name}拿到的{form}只接受民國年，要填的是西元{ad}年。這一年要填民國幾年？"
+  - id: A07
+    register: casual
+    style: line
+    text: "請問一下～{form}上要填民國年，西元{ad}年是民國幾年呢？"
+  - id: A08
+    register: formal
+    text: "{name}在整理{form}，資料上的年份是西元{ad}年。若改用民國紀年，是民國幾年？"
+
+# D1：民國日期 → 西元年份（月日不變，只問年份）
+date_templates:
+  - id: D01
+    register: formal
+    text: "{doc}是{date}。這個日期是西元哪一年？請回答西元年份。"
+  - id: D02
+    register: formal
+    text: "{name}要把{doc}「{date}」改寫成西元日期。改寫後的西元年份是多少？"
+  - id: D03
+    register: casual
+    text: "{doc}寫{date}，換成西元日期的話，年份是幾年？"
+  - id: D04
+    register: formal
+    style: developer
+    text: "工程師{name}要把{doc}（{date}）轉成 ISO 8601 格式（YYYY-MM-DD）。轉換後的 YYYY 是多少？"
+  - id: D05
+    register: formal
+    style: qa
+    text: "【生活Q&A】問：{doc}是{date}，換算成西元是哪一年？"
+  - id: D06
+    register: formal
+    style: distractor
+    text: "{doc}是{date}，文件編號第 27 號。這個日期換成西元的年份是多少？"
+  - id: D07
+    register: formal
+    text: "請把{doc}「{date}」換算成西元日期，只回答年份。"
+  - id: D08
+    register: casual
+    implicit: true
+    style: implicit
+    text: "{name}在核對{doc}，上面寫{date}。這一天在西元曆上是哪一年？"
+
+# 實體池（與 annual_leave_days、ban_checksum 相同）。只用在部分模板的 {name}。
+names:
+  surnames: [陳, 林, 黃, 張, 李, 王, 吳, 劉, 蔡, 楊, 許, 鄭, 謝, 郭, 洪]
+  given: [怡君, 家豪, 淑芬, 建宏, 美玲, 志明, 雅婷, 俊傑, 宗翰, 佩珊, 冠宇, 欣怡, 柏翰, 詩涵, 承翰]

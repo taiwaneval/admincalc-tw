@@ -1,0 +1,223 @@
+# TaiwanEval rule family spec
+# 這份 YAML 是 source of truth；HTML 規則卡由 build_page.py 從這裡生成。
+# 審閱者簽核寫在同目錄的 reviews.yaml，對象是本檔、rule.py、templates.yaml、sampler.py 四個檔的 sha256（見 tools/family_reviews.py），不是頁面本身。
+# 本檔不記 status／review_log：family 是否 reviewed 只由 reviews.yaml 推得（TAI-428）。
+# 本 family 與 ban_checksum（TAI-662）屬於同一個資料集，不屬於 LaborCalc-TW（Calvin 2026-11-13）；資料集名稱在 TAI-664 決定，
+# 在資料集登錄完成前不進任何 release。
+
+id: minguo_year
+name: 民國年與西元年換算（民國 1–120 年）
+version: 0.1.1
+tier: 1 # 程序型：參數由程式抽樣，答案由程式計算
+language: zh-TW
+curated_at: "2026-11-13"
+curator: Calvin Ku
+
+summary: >
+  民國紀年從民國元年（西元 1912 年）起算，民國 N 年就是西元 N + 1911 年，西元 Y 年是民國 Y − 1911 年；沒有民國 0 年。
+  月日沿用國曆，換算時不變。題目只出民國 1–120 年（西元 1912–2031 年），每一題都對得到內政部戶政司〈年歲對照表〉的一列。
+  三種題型：民國年換成西元年、西元年換成民國年、從民國日期取出西元年份。
+
+# 非法規來源（docs/bronze-non-law-sources.md）。gold/generate.py 把它的 sha256 與 fetched_at 寫進每題的 lineage.sources。
+bronze_sources:
+  - moi-ris-year-table
+
+# ---------------------------------------------------------------------------
+# 來源：主要來源是 bronze/moi-ris-year-table/source.html（raw sha256 bb65417d936fa738831fe956e3b1030c191b1e12227de0103505fcdb487da2b4；
+# 排除 Incapsula script 後的內容 sha256 df0970e684043621dd03d08f1058a80a533bbfc4b89fb2176e2630fc902475a7）。
+# 查證紀錄：Linear TAI-659 與研究文件 docs/research/minguo-calendar-sources.md（分支 claude/tai-659-minguo-calendar-sources-5be19a）。
+# 公文程式條例與文書處理手冊只說明「為什麼題目用民國紀年」，不收 bronze（Calvin 2026-11-13 裁定）。
+# 官方文件都沒有寫出「西元年減 1911」這條公式本身；來源支撐的是表上的每一年，所以題目限制在表內。
+# ---------------------------------------------------------------------------
+legal_basis:
+  - id: MOI-YEAR-TABLE
+    law: 內政部戶政司〈年歲對照表〉
+    article: 民國1（1912）至民國120（2031）共 120 列的「民國」「西元」兩欄
+    amended: null
+    url: https://www.ris.gov.tw/app/portal/219
+    encodes: 每一題的答案（民國 N 年 ↔ 西元年）；抽樣範圍民國 1–120 年；golden G01–G14 的值與列號
+    summary: >
+      逐年列出民國與西元，149 列由「民國120／2031」排到「民國前29／1883」，西元年連續、沒有缺漏；民國元年寫成「民國1」，
+      沒有民國 0 年（民國1 的下一列是民國前1／1911）。民國 1–120 年的 120 列全部符合民國 N 年 = 西元 N + 1911 年（test_agreement.py 第 4 項全量核對）。
+    note: >
+      頁面路徑：戶政司 › 公開資訊 › 應用資料 › 年歲對照表；這一頁以 iframe 嵌入 https://www.ris.gov.tw/documents/html/8/1/219.html，bronze 收的是嵌入檔。
+      頁面與嵌入檔都沒有發布日期、字號或版次，所以 amended 是空的；伺服器回應的 Last-Modified（2026-03-27）是中繼資料，不是官方日期。
+      依規範第 3 節的例外（沒有版次的官方網頁表格）收進 bronze。表的清代、日據時代、農曆歲次三欄與民國前的 29 列不在本 family 的範圍。
+      授權：政府資料開放授權條款－第 1 版，使用時應註明出處（戶政司〈政府網站資料開放宣告〉）。
+  - id: A0030018-6
+    law: 公文程式條例
+    article: 第 6 條
+    amended: "2007-03-21"
+    url: https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030018
+    encodes: 題目為什麼以民國紀年出題（不決定任何答案）
+    summary: >
+      「公文應記明國曆年、月、日。」
+    note: >
+      只寫進 legal_basis，不收 bronze（Calvin 2026-11-13 裁定）；條文原文與修正日期民國 96 年 3 月 21 日已在 TAI-659 研究文件第 2.4 節核對。
+      條文用「國曆」，沒有出現「民國」或「紀元」，也沒有寫換算。日後若要收進 bronze，用 tools/fetch_law.py。
+  - id: EY-DOC-HANDBOOK-20-7
+    law: 行政院《文書處理手冊》
+    article: 第二十點第（七）款
+    amended: "2023-06-08"
+    url: https://www.ey.gov.tw/Page/F0CD366C64B5A15C/ecb75289-a85d-45be-9fb0-0fa64c302b54
+    encodes: 題目為什麼以民國紀年出題（不決定任何答案）
+    summary: >
+      「文書中記載年份，以國曆為準，惟外文或譯件，得採用西元紀年。」
+    note: >
+      只寫進 legal_basis，不收 bronze（Calvin 2026-11-13 裁定）。原文、手冊修正依據「中華民國 112 年 6 月 8 日行政院院臺綜字第 1125010368 號函修正」
+      與 PDF sha256 8c9ca22f2376328d9a46ba31012ae7aa6fdf124b47d50733ea9118d0b7693613 已在 TAI-659 研究文件第 2.4 節核對（PDF 第 20 頁）。
+      url 是行政院全球資訊網〈修正文書處理手冊〉（日期 112-09-20，資料來源綜合業務處）的頁面；研究文件記了這一頁的標題與日期但沒有抄網址，
+      網址是 2026-11-13 以網路搜尋找到，搜尋結果的頁面標題、日期與研究文件相同。
+  - id: DEF-MONTH-DAY
+    law: 定義性規則（沒有官方原文）
+    article: 月日不變
+    amended: null
+    url: https://www.ris.gov.tw/app/portal/219
+    encodes: roc_date_to_ad 題型：民國日期的年份照表換算，月與日不變，所以答案只由年份決定
+    summary: >
+      民國紀年與西元紀年用的是同一套國曆（格里曆）月日，只差年份的起算點；民國 115 年 3 月 1 日就是西元 2026 年 3 月 1 日。
+    note: >
+      沒有任何一份現行官方文件以文字寫出「月日不變」（TAI-659 研究文件第 5 節），所以這是定義性規則，不是從 bronze 原文推得。
+      公文程式條例第 6 條規定記明「國曆」年月日，間接說明月日是國曆。另有一份不能散布的官方出版品以完整日期的換算例示範月日不變，
+      只在核對紀錄中引用（docs/verification/2026-11-13-tai665-signoff/README.md），不收原檔。
+
+scope:
+  includes:
+    - 民國 1–120 年（西元 1912–2031 年）的民國年換成西元年
+    - 西元 1912–2031 年換成民國年
+    - 民國 1–120 年的完整國曆日期（不含 2 月 29 日），取出換算後的西元年份
+    - 民國元年在題幹中寫成「元年」
+  excludes: # 每項附排除理由，規則卡顯示在項目底下
+    - item: 民國前紀年（西元 1911 年以前）
+      reason: TAI-444 的裁定（2026-11-12）：範圍限定民國元年以後的國曆日期。民國前的換算沒有民國 0 年，要「再加一」（戶籍法施行細則第 18 條），是另一條規則。
+    - item: 民國 121 年（西元 2032 年）以後
+      reason: 〈年歲對照表〉只到民國 120 年。Calvin 2026-11-13 裁定抽樣限制在表內，每一題都要對得到表上的一列；表外只能由規則外推，沒有 bronze 支撐。
+    - item: 農曆日期、干支、日本年號、清代年號
+      reason: 範圍限定國曆日期（TAI-444）。表上雖有清代、日據時代、農曆歲次三欄，但都不是民國與西元的換算。
+    - item: 2 月 29 日、閏年判斷與星期幾
+      reason: 判斷閏年與星期要另收中央氣象署〈日曆資料表〉，TAI-665 列為範圍外、日後另開票。2 月 29 日只存在於閏年，出題就要先判斷閏年，所以日期題不抽 2 月 29 日，rule.py／rule.js 對它報錯。
+    - item: 國字數字的年份寫法（例如民國一百一十五年）
+      reason: 沒有官方文件規定國字年份的寫法（TAI-659 研究文件第 5 節；《文書處理手冊》附錄 4 只規定日期用阿拉伯數字）。題幹的數字一律用阿拉伯數字（半形或全形）。
+    - item: 斜線或 7 碼的民國日期（例如 115/03/01、1150301）
+      reason: 只是寫法，換算規則相同；沒有官方文件規定這些寫法，題幹改用「民國……年……月……日」與公文的「中華民國……年……月……日」。
+    - item: 西元日期換成民國日期
+      reason: TAI-665 列的三種題型沒有這一種；它與「西元年換成民國年」只差月日，而月日不變。
+
+parameters:
+  task:
+    type: enum
+    label: 題型
+    values:
+      roc_to_ad: 民國年 → 西元年
+      ad_to_roc: 西元年 → 民國年
+      roc_date_to_ad: 民國日期 → 西元年份
+    note: 題型決定 year 是民國年還是西元年，以及答案是哪一種年
+  year:
+    type: int
+    label: 年
+    min: 1
+    max: 2031
+    note: roc_to_ad 與 roc_date_to_ad 是民國年 1–120；ad_to_roc 是西元年 1912–2031
+  month:
+    type: int
+    label: 月
+    min: 1
+    max: 12
+    note: 只有 roc_date_to_ad 使用；年份題的題目參數是 null，兩份實作也都忽略它
+  day:
+    type: int
+    label: 日
+    min: 1
+    max: 31
+    note: 只有 roc_date_to_ad 使用；必須是該月的合法日期，2 月只到 28 日
+
+answer: { type: integer_year, tolerance: 0, label: 答案（年） }
+
+formulas:
+  - label: 民國年 → 西元年
+    tex: 'Y_{\mathrm{AD}} = N_{\mathrm{ROC}} + 1911,\quad 1 \le N_{\mathrm{ROC}} \le 120'
+    text: 民國元年是西元 1912 年，所以民國 N 年是西元 N + 1911 年。沒有民國 0 年。
+  - label: 西元年 → 民國年
+    tex: 'N_{\mathrm{ROC}} = Y_{\mathrm{AD}} - 1911,\quad 1912 \le Y_{\mathrm{AD}} \le 2031'
+    text: 上式的反函數。西元 1912 年是民國 1 年（元年）。
+  - label: 民國日期 → 西元年份
+    tex: '(N_{\mathrm{ROC}}, m, d) \mapsto N_{\mathrm{ROC}} + 1911'
+    text: 月 m、日 d 不變（定義性規則 DEF-MONTH-DAY），答案只取年份。
+formula_legend: N 民國年 · Y 西元年 · m 月 · d 日 · 1911 = 民國元年的前一個西元年
+
+implementation:
+  python: rule.py
+  js: rule.js
+  js_global: MinguoYearRule
+  arg_order: [task, year, month, day]
+  calculator_default: { task: roc_to_ad, year: 115, month: 3, day: 1 }
+  result_labels: { rocYear: 民國年, adYear: 西元年, date: 日期 }
+
+# ---------------------------------------------------------------------------
+# 分支與配額：sampler.py 依此抽樣，coverage 報告依此檢核
+#   Y1 的配額最大：刻意配對（TAI-647）只在 templates 池，每 split 200 題時要有 15 組以上（tests/test_generate_diversity.py）。
+# ---------------------------------------------------------------------------
+branches:
+  - { id: Y1, task: roc_to_ad,      quota: 0.40, definition: 民國年 → 西元年, note: 答案 1912–2031 }
+  - { id: Y2, task: ad_to_roc,      quota: 0.30, template_pool: ad_templates,   definition: 西元年 → 民國年, note: 答案 1–120 }
+  - { id: D1, task: roc_date_to_ad, quota: 0.30, template_pool: date_templates, definition: 民國日期 → 西元年份, note: 月日由 sampler 抽，不影響答案 }
+
+# 抽樣旋鈕的固定值（sampler.py 讀這裡，不寫死在程式）
+boundary_values_label: 抽樣旋鈕
+boundary_values:
+  roc_year_range: [1, 120]                        # 〈年歲對照表〉民國 1–120 年；每一題都對得到表上的一列
+  anchor_roc_years: [1, 38, 78, 89, 99, 100, 120] # 每種題型各一題：元年、1949、1989、2000、兩位數到三位數、表的最後一年（Calvin 2026-11-13 加入 78）
+  future_from_roc: [116]                          # 民國 116 年（2027）以後視為未來年份，只配可以寫未來日期的文件（Calvin 2026-11-13）
+
+# ---------------------------------------------------------------------------
+# 題數與重複（Calvin 2026-11-13 裁定）
+#   public 題集 100 題（目前只產生 public；private 機制存在但還沒有任何 family 產生過）。
+#   理由：年份只有 120 個，100 題時除了錨點以外年份都不重複；這個 family 規則單一，再多的題目大多只是同一批年份換方向再問。
+#   對照：LaborCalc-TW 2026Q4 的 overtime_pay、annual_leave_days 各 200 題。
+#   誤差：100 題的正確率標準誤最大為 √(0.5 × 0.5 ／ 100) = 5 個百分點，95% 信賴區間約 ±10 個百分點；
+#   這個 family 預期強模型的正確率很高，正確率 95% 時約 ±4 個百分點、99% 時約 ±2 個百分點。分支層級 30–40 題，只適合看方向。
+#   重複的處理（年份只有 120 個）：
+#   1. 同一種題型裡，年份不重複；錨點年份在每種題型各出一次。年份題的參數只有題型與年份，
+#      所以一種題型最多 120 題；超過時 sampler 拒絕產生（全部題數超過 300 題時），不讓產生器出重複題。
+#   2. 不同題型之間，非錨點年份照洗牌後的順序發完 113 個才重用；所以題集不超過 134 題（錨點 21 題 + 113 題）時，
+#      非錨點年份在三種題型之間都不重複，也不會同時出現「民國 115 年是西元幾年」與「西元 2026 年是民國幾年」這種互為反向的題。
+#   3. 刻意配對（pairing）的兩題參數相同、模板不同，是故意的，用來量換問法答案會不會變。
+#   4. 日後若產生 private 題集，它和 public 必然有相同的年份。年份對照是公開的事實（〈年歲對照表〉本身就公開），
+#      private 防的是題幹與題組被背下，不是年份本身；所以不排除兩者之間相同的年份。
+#   欄位名稱 default_n_per_split 沿用產生器的用語（split = public 或 private）。
+# ---------------------------------------------------------------------------
+default_n_per_split: 100
+
+# ---------------------------------------------------------------------------
+# Golden cases：驗證器出貨前必須全過
+# status：published-example = 〈年歲對照表〉原樣列出的那一列；derived = 年份照表，月日不變是定義性規則（DEF-MONTH-DAY）
+# bronze_row 是表的列號（從 1 起，第 1 列是民國120／2031）；test_agreement.py 第 3 項核對列號、民國年與西元年都和表一致。
+# 沒有官方試算器，所以沒有 calculator-verified。
+# ---------------------------------------------------------------------------
+golden_cases:
+  - { id: G01, input: { task: roc_to_ad, year: 1,   month: null, day: null }, expected: 1912, status: published-example, bronze_row: 120, source: 〈年歲對照表〉第 120 列「民國1｜1912」（題幹寫成民國元年） }
+  - { id: G02, input: { task: roc_to_ad, year: 2,   month: null, day: null }, expected: 1913, status: published-example, bronze_row: 119, source: 〈年歲對照表〉第 119 列「民國2｜1913」 }
+  - { id: G03, input: { task: roc_to_ad, year: 38,  month: null, day: null }, expected: 1949, status: published-example, bronze_row: 83,  source: 〈年歲對照表〉第 83 列「民國38｜1949」 }
+  - { id: G04, input: { task: roc_to_ad, year: 89,  month: null, day: null }, expected: 2000, status: published-example, bronze_row: 32,  source: 〈年歲對照表〉第 32 列「民國89｜2000」 }
+  - { id: G05, input: { task: roc_to_ad, year: 99,  month: null, day: null }, expected: 2010, status: published-example, bronze_row: 22,  source: 〈年歲對照表〉第 22 列「民國99｜2010」 }
+  - { id: G06, input: { task: roc_to_ad, year: 100, month: null, day: null }, expected: 2011, status: published-example, bronze_row: 21,  source: 〈年歲對照表〉第 21 列「民國100｜2011」 }
+  - { id: G07, input: { task: roc_to_ad, year: 115, month: null, day: null }, expected: 2026, status: published-example, bronze_row: 6,   source: 〈年歲對照表〉第 6 列「民國115｜2026」 }
+  - { id: G08, input: { task: roc_to_ad, year: 120, month: null, day: null }, expected: 2031, status: published-example, bronze_row: 1,   source: 〈年歲對照表〉第 1 列「民國120｜2031」（表的最後一年） }
+  - { id: G09, input: { task: ad_to_roc, year: 1912, month: null, day: null }, expected: 1,  status: published-example, bronze_row: 120, source: 〈年歲對照表〉第 120 列「民國1｜1912」 }
+  - { id: G10, input: { task: ad_to_roc, year: 1949, month: null, day: null }, expected: 38, status: published-example, bronze_row: 83,  source: 〈年歲對照表〉第 83 列「民國38｜1949」 }
+  - { id: G11, input: { task: ad_to_roc, year: 2000, month: null, day: null }, expected: 89, status: published-example, bronze_row: 32,  source: 〈年歲對照表〉第 32 列「民國89｜2000」 }
+  - { id: G12, input: { task: ad_to_roc, year: 2011, month: null, day: null }, expected: 100, status: published-example, bronze_row: 21, source: 〈年歲對照表〉第 21 列「民國100｜2011」 }
+  - { id: G13, input: { task: ad_to_roc, year: 2026, month: null, day: null }, expected: 115, status: published-example, bronze_row: 6,  source: 〈年歲對照表〉第 6 列「民國115｜2026」 }
+  - { id: G14, input: { task: ad_to_roc, year: 2031, month: null, day: null }, expected: 120, status: published-example, bronze_row: 1,  source: 〈年歲對照表〉第 1 列「民國120｜2031」 }
+  - { id: G15, input: { task: roc_date_to_ad, year: 115, month: 3,  day: 1 },  expected: 2026, status: derived, bronze_row: 6,   source: 〈年歲對照表〉第 6 列「民國115｜2026」；月日不變（DEF-MONTH-DAY）。TAI-665 的例子 }
+  - { id: G16, input: { task: roc_date_to_ad, year: 1,   month: 1,  day: 1 },  expected: 1912, status: derived, bronze_row: 120, source: 〈年歲對照表〉第 120 列「民國1｜1912」；民國元年 1 月 1 日 }
+  - { id: G17, input: { task: roc_date_to_ad, year: 89,  month: 12, day: 31 }, expected: 2000, status: derived, bronze_row: 32,  source: 〈年歲對照表〉第 32 列「民國89｜2000」；年底的日期仍是同一年 }
+  - { id: G18, input: { task: roc_date_to_ad, year: 52,  month: 11, day: 30 }, expected: 1963, status: derived, bronze_row: 69,  source: 〈年歲對照表〉第 69 列「民國52｜1963」；與核對紀錄引用的官方完整日期換算例相同 }
+  - { id: G19, input: { task: roc_date_to_ad, year: 120, month: 2,  day: 28 }, expected: 2031, status: derived, bronze_row: 1,   source: 〈年歲對照表〉第 1 列「民國120｜2031」；2 月的最後一個在範圍內的日期 }
+
+# 0.1.0 的 Q1、Q2 已由 Calvin 2026-11-13 裁定，結論寫在對應的欄位與 changelog（docs/family-admission.md B3）。
+open_questions: []
+
+changelog:
+  - { version: 0.1.1, date: "2026-11-13", note: "Calvin 裁定：Q1 public 100 題、配額 40/30/30、配對比例 0.4；Q2 錨點年份加入民國 78 年（1989），共 7 個；未來年份（民國 116 年以後）只配可以寫未來日期的文件，A06 不再問出生年。open_questions 清空" }
+  - { version: 0.1.0, date: "2026-11-13", note: "初版草稿（TAI-665）：依 bronze/moi-ris-year-table（內政部戶政司〈年歲對照表〉）實作民國與西元年換算；三種整數題型；golden 14 筆照表的列（published-example）、5 筆日期題（derived，月日不變是定義性規則）" }

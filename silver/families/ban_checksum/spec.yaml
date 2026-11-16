@@ -1,0 +1,209 @@
+# TaiwanEval rule family spec
+# 這份 YAML 是 source of truth；HTML 規則卡由 build_page.py 從這裡生成。
+# 審閱者簽核寫在同目錄的 reviews.yaml，對象是本檔、rule.py、templates.yaml、sampler.py 四個檔的 sha256（見 tools/family_reviews.py），不是頁面本身。
+# 本檔不記 status／review_log：family 是否 reviewed 只由 reviews.yaml 推得（TAI-428）。
+# 本 family 屬於營利事業統一編號檢核資料集，不屬於 LaborCalc-TW（Calvin 2026-11-13）；在資料集登錄（TAI-664）完成前不進任何 release。
+
+id: ban_checksum
+name: 營利事業統一編號檢查碼（財政部現行邏輯）
+version: 0.1.1
+tier: 1 # 程序型：參數由程式抽樣，答案由程式計算
+language: zh-TW
+curated_at: "2026-11-13"
+curator: Calvin Ku
+
+summary: >
+  營利事業統一編號是 8 位數字。各位數依序乘上 1、2、1、2、1、2、4、1，乘積的十位數與個位數相加後再全部相加；
+  第 7 位是 7 時，該位乘積 28 相加得 10，最後第二位數取 1 或取 0 各算一個和。現行規則是和（或兩個和其中之一）能被 5 整除即符合邏輯；
+  修正前是能被 10 整除。題目一律依現行規則作答，修正前規則只用於錯答歸因。
+
+# 非法規來源（docs/bronze-non-law-sources.md）。gold/generate.py 把它的 sha256 與 fetched_at 寫進每題的 lineage.sources。
+bronze_sources:
+  - mof-ban-checksum
+
+# ---------------------------------------------------------------------------
+# 來源：都出自 bronze/mof-ban-checksum/source.pdf（sha256 ade10f01b9146834f65c1d7f3387bcefc6c013535517ccf7ea98a42a7f5da825），
+# 只有 FIA-NOTICE 出自公告頁（未收進 bronze，原因見該筆 note）。查證紀錄：Linear TAI-660。
+# 發布機關、日期照公告頁原文；公告頁與附件都沒有發文字號。轉知公告引用的財政部函字號與「112 年 4 月 1 日啟用」未查證，不填。
+# ---------------------------------------------------------------------------
+legal_basis:
+  - id: FIA-ATT-1
+    law: 營利事業統一編號檢查碼邏輯修正說明（附件）
+    article: 第一節「現有統一編號邏輯檢查範例」
+    amended: "2021-12-22"
+    url: https://www.fia.gov.tw/singlehtml/3?cntId=c4d9cff38c8642ef8872774ee9987283
+    encodes: 邏輯乘數 1,2,1,2,1,2,4,1；乘積直寫並上下相加（十位加個位）；第 7 位為 7 時乘積之和的最後第二位數取 1 或 0，算出 Z1、Z2；修正前的整除條件（能被 10 整除），只用在錯答歸因與修正前 golden
+    summary: >
+      以 04595257 示範第 7 位非 7 的算法（Z = 40，能被 10 整除）；以 10458575、10458574 示範第 7 位為 7 的算法
+      （Z1、Z2 分別取 1 或 0，其中之一的和能被 10 整除即符合邏輯）。
+    note: >
+      發布機關：財政部財政資訊中心（公告頁「發布單位：電子發票組」）；公告頁發布日期 110-12-22，本欄的 amended 即此日期，附件 PDF 本身沒有日期；
+      沒有發文字號。轉知公告引用的財政部函（110-06-22，字號未查證）與附件 PDF 中繼資料的建立日期（2021-08-03）都不採用；
+      published_on 採公告頁日期，函的字號與日期不填（Calvin 2026-11-13 Q6）。bronze 快照 bronze/mof-ban-checksum/source.pdf，下載網址 https://www.fia.gov.tw/download/ff9c37611e9e46dab952676d24dc0b67。
+      授權：政府資料開放授權條款－第 1 版，使用時應註明出處（財政資訊中心〈政府網站資料開放宣告〉）。
+  - id: FIA-ATT-2
+    law: 營利事業統一編號檢查碼邏輯修正說明（附件）
+    article: 第二節「修正後之檢查邏輯」
+    amended: "2021-12-22"
+    url: https://www.fia.gov.tw/singlehtml/3?cntId=c4d9cff38c8642ef8872774ee9987283
+    encodes: 現行整除條件：Z（或 Z1、Z2 其中之一）能被 5 整除；權數、乘積處理與第 7 位為 7 的處理不變
+    summary: >
+      目前統一編號邏輯為可被 10 整除，未來檢查邏輯改為可被 5 整除。
+    note: >
+      附件第一節與第三節的計算表除了結論句的除數以外完全相同，所以修正只改整除條件。新規則包含舊規則：舊規則有效的號碼在新規則一定有效（test_agreement.py 的性質檢查）。
+  - id: FIA-ATT-3
+    law: 營利事業統一編號檢查碼邏輯修正說明（附件）
+    article: 第三節「修正後之統一編號邏輯檢查範例」
+    amended: "2021-12-22"
+    url: https://www.fia.gov.tw/singlehtml/3?cntId=c4d9cff38c8642ef8872774ee9987283
+    encodes: golden G01–G05（現行規則）；04595252、10458570 為修正前無效、修正後有效的官方範例
+    summary: >
+      以修正後的條件重做第一節的三個範例，並新增 04595252（Z = 35）與 10458570（Z1 = 16，Z2 = 15）兩個能被 5 整除、符合邏輯的範例。
+  - id: FIA-NOTICE
+    law: 營利事業統一編號檢查碼邏輯修正說明（公告頁）
+    article: 第二至四點
+    amended: "2021-12-22"
+    url: https://www.fia.gov.tw/singlehtml/3?cntId=c4d9cff38c8642ef8872774ee9987283
+    encodes: 號碼一律為 8 位數字（新舊格式相同）；題目只用現行規則
+    summary: >
+      為擴增號碼並與現行號碼相容（新舊格式相同），檢查邏輯由可被 10 整除改為可被 5 整除；公私部門的檢核程式請於 112 年 3 月 31 日前完成修改；
+      預計 112 年 4 月以後視舊號餘存狀況逐步釋出新產製的統一編號。
+    note: >
+      公告頁含網站選單等動態內容，重新下載的 bytes 不固定，所以只收附件 PDF 進 bronze（TAI-660 第 5 節的建議）。
+      公告頁沒有寫某一天起舊規則失效；因為新規則包含舊規則，現行只需用新規則判斷，題目不涉及生效日。
+
+scope:
+  includes:
+    - 8 位數字的營利事業統一編號，依現行檢查碼邏輯（能被 5 整除）判斷
+    - 單一號碼是否符合邏輯
+    - 給前 7 碼，0–9 之中能讓號碼符合邏輯的第 8 碼裡最小的那一個
+    - 一串號碼中有幾個符合邏輯
+  excludes: # 每項附排除理由，規則卡顯示在項目底下
+    - item: 國民身分證統一編號、外來人口統一證號
+      reason: TAI-444 的裁定（2026-11-12）：先只做營利事業統一編號。身分證字號的有效號碼可能屬於真人，日後若納入只用無效號碼與遮罩題型。
+    - item: 「給前 7 碼，求檢查碼」
+      reason: 現行規則下，前 7 碼固定時有 2 個（第 7 位為 7 時有 4 個）第 8 碼能讓號碼符合邏輯，答案不唯一。改問「最小的那一個」。
+    - item: 「給前 7 碼，第 8 碼有幾個數字可填」
+      reason: 答案只由第 7 位是不是 7 決定（現行 2 或 4），不必計算就能答對，一律答 2 也能對一半。Calvin 2026-11-13（Q4）裁定改成「最小的有效第 8 碼」，答案 0–4，要實際算出前 7 碼的和。
+    - item: 題幹指定修正前規則（可被 10 整除）的題目
+      reason: 修正前規則已由現行規則取代，題目只問現行規則；修正前規則只用在錯答歸因（hypotheses.py 的 old_rule）。Calvin 2026-11-13（Q3）裁定不出：新規則包含舊規則，差異題已能分辨模型是否只會修正前規則；題幹寫出「能被 10 整除」也等於把規則告訴模型。
+    - item: 號碼是否已配賦、屬於哪個營利事業
+      reason: 檢查碼邏輯只判斷號碼是否符合邏輯，不代表號碼已配賦；配賦狀態要查登記資料，不是規則計算。題目也不讓號碼搭配公司名稱（TAI-662 Constraints）。
+    - item: 位數不是 8、含非數字字元的號碼
+      reason: 格式錯誤一眼可見，不需要檢查碼邏輯；附件只規定 8 位數字的檢查方法。rule.py／rule.js 對這類輸入報錯，不出題。
+
+parameters:
+  task:
+    type: enum
+    label: 題型
+    values:
+      is_valid: 單一號碼是否符合邏輯（1／0）
+      min_check_digit: 給前 7 碼，最小的有效第 8 碼
+      count_valid: 一串號碼中有幾個符合邏輯
+    note: 題型決定 digits 的寫法與答案的意義
+  digits:
+    type: string
+    label: 號碼
+    format: 數字字串，保留前導 0
+    note: is_valid 是一個 8 位號碼；min_check_digit 是前 7 碼；count_valid 是 3–6 個 8 位號碼，以半形逗號分隔、不重複
+  divisor:
+    type: enum
+    label: 整除條件
+    values:
+      5: 現行（可被 5 整除）
+      10: 修正前（可被 10 整除）
+    note: 題目一律為 5；10 只用在錯答歸因與修正前的 golden
+
+answer: { type: integer_count, tolerance: 0, label: 答案 }
+
+formulas:
+  - label: 各位的貢獻（附件「乘積直寫並上下相加」）
+    tex: 's_i = \left\lfloor \frac{d_i w_i}{10} \right\rfloor + (d_i w_i \bmod 10),\quad w = (1,2,1,2,1,2,4,1)'
+    text: 第 i 位數字 d_i 乘上邏輯乘數 w_i，乘積的十位數與個位數相加。只有第 7 位是 7 時（7 × 4 = 28）相加結果 10 仍是兩位數。
+  - label: 和（附件 Z、Z1、Z2）
+    tex: 'd_7 \ne 7:\ Z = \sum_{i=1}^{8} s_i \qquad d_7 = 7:\ Z_1 = \sum_{i \ne 7} s_i + 1,\ \ Z_2 = \sum_{i \ne 7} s_i + 0'
+    text: 第 7 位是 7 時，乘積之和的最後第二位數取 1 或 0 均可，各算一個和。
+  - label: 是否符合邏輯
+    tex: 'V_k = [\, k \mid Z \,] \ \text{或} \ [\, k \mid Z_1 \lor k \mid Z_2 \,],\qquad k = 5\ \text{（現行）},\ k = 10\ \text{（修正前）}'
+    text: 現行規則 k = 5；修正前 k = 10。is_valid 答 V_5（1 或 0）；min_check_digit 答 0–9 之中使 V_5 成立的第 8 碼的最小值（使 V_5 成立的第 8 碼有 2 或 4 個，最小值在 0–4）；count_valid 答清單中 V_5 成立的號碼個數。
+formula_legend: d_i 第 i 位數字 · w_i 邏輯乘數 · s_i 該位貢獻 · Z／Z1／Z2 附件的和 · k 除數
+
+implementation:
+  python: rule.py
+  js: rule.js
+  js_global: BanChecksumRule
+  arg_order: [task, digits, divisor]
+  calculator_default: { task: is_valid, digits: "04595252", divisor: 5 }
+  result_labels: { sums: Z／Z1、Z2, validCheckDigits: 可填的第 8 碼, validNumbers: 符合邏輯的號碼, divisor: 除數 }
+
+# ---------------------------------------------------------------------------
+# 分支與配額：sampler.py 依此抽樣，coverage 報告依此檢核
+#   d7：other = 第 7 位不是 7；seven = 第 7 位是 7
+#   status：both = 修正前、修正後都符合；new_only = 只有修正後符合；invalid = 都不符合（新規則包含舊規則，沒有「只有修正前符合」）
+#   old_rule_differs：照修正前規則作答時，答案與正解不同
+# 新舊規則判斷不同的題目：V2 + V5 + C1 + C2 + L1 = 0.07 + 0.05 + 0.10 + 0.10 + 0.15 = 47%（每個 split 100 題時 47 題；Calvin 2026-11-13 Q1 確認）。
+#   is_valid 題中 24%（12／50）；min_check_digit 題全部不同；count_valid 題中 50%（15／30）。
+#   min_check_digit：隨機的前 7 碼約一半在修正前規則下答案不同（修正前的最小有效第 8 碼 ≥ 5 時），
+#   sampler 只挑答案不同的前 7 碼，讓 Q1 定的差異題配置在 Q4 改題型後維持不變。
+# is_valid 題的答案 1、0 各半（V1+V2+V4+V5 = 25%，V3+V6 = 25%），只回答 1 或只回答 0 的模型拿不到超過一半。
+# ---------------------------------------------------------------------------
+branches:
+  - { id: V1, kind: number, task: is_valid, d7: other, status: both,     quota: 0.08, old_rule_differs: false, definition: is_valid · 第 7 位非 7 · 新舊都符合, note: 答 1 }
+  - { id: V2, kind: number, task: is_valid, d7: other, status: new_only, quota: 0.07, old_rule_differs: true,  definition: is_valid · 第 7 位非 7 · 只有現行符合, note: 答 1；Z 除以 10 餘 5，照修正前規則會答 0 }
+  - { id: V3, kind: number, task: is_valid, d7: other, status: invalid,  quota: 0.13, old_rule_differs: false, definition: is_valid · 第 7 位非 7 · 都不符合, note: 答 0 }
+  - { id: V4, kind: number, task: is_valid, d7: seven, status: both,     quota: 0.05, old_rule_differs: false, definition: is_valid · 第 7 位為 7 · 新舊都符合, note: 答 1；Z1、Z2 何者整除記在 knobs.via }
+  - { id: V5, kind: number, task: is_valid, d7: seven, status: new_only, quota: 0.05, old_rule_differs: true,  definition: is_valid · 第 7 位為 7 · 只有現行符合, note: 答 1；照修正前規則會答 0 }
+  - { id: V6, kind: number, task: is_valid, d7: seven, status: invalid,  quota: 0.12, old_rule_differs: false, definition: is_valid · 第 7 位為 7 · 都不符合, note: 答 0 }
+  - { id: C1, kind: prefix, task: min_check_digit, d7: other, quota: 0.10, old_rule_differs: true, template_pool: digit_templates, definition: min_check_digit · 第 7 位非 7, note: 答 0–4；修正前只有一個有效第 8 碼，比正解大 5 }
+  - { id: C2, kind: prefix, task: min_check_digit, d7: seven, quota: 0.10, old_rule_differs: true, template_pool: digit_templates, definition: min_check_digit · 第 7 位為 7, note: 答 0–3；照修正前規則答案不同 }
+  - { id: L1, kind: list, task: count_valid, new_only: at_least_one, quota: 0.15, old_rule_differs: true,  template_pool: list_templates, definition: count_valid · 至少一個只有現行符合, note: 照修正前規則會少算 }
+  - { id: L2, kind: list, task: count_valid, new_only: none,         quota: 0.15, old_rule_differs: false, template_pool: list_templates, definition: count_valid · 沒有只有現行符合的號碼, note: 新舊規則答案相同 }
+
+# 抽樣旋鈕的固定值（sampler.py 讀這裡，不寫死在程式）
+boundary_values_label: 抽樣旋鈕
+boundary_values:
+  list_length: [3, 4, 5, 6]          # count_valid 每題的號碼個數，平均輪流
+  list_seven_rate: [0.3]             # count_valid 清單中每個號碼第 7 位為 7 的機率
+  list_class_weights: [0.30, 0.25, 0.45]   # 清單中每個號碼的類別權重：both、new_only、invalid（L2 不抽 new_only）
+
+# 題數：每個 split 100 題（Calvin 2026-11-13 Q1 確認）。
+#   理由：與 LaborCalc-TW 的 annual_leave_days 每 split 100 題同級；答案只有整數、題幹短，題數不是成本瓶頸，瓶頸是模板的人工簽核。
+#   誤差：100 題的正確率標準誤最大為 √(0.5 × 0.5 ／ 100) = 5 個百分點，95% 信賴區間約 ±10 個百分點；正確率 80% 時約 ±8 個百分點。
+#   分支層級只有 5–15 題，只適合看方向，不適合比較模型。新舊規則差異題 47 題，「照修正前規則作答」的比例有約 ±14 個百分點的誤差。
+#   要把整體誤差降到 ±5 個百分點，需要每 split 約 400 題。
+default_n_per_split: 100
+
+# ---------------------------------------------------------------------------
+# Golden cases：驗證器出貨前必須全過
+# status: published-example = 附件 PDF 原樣列出的號碼與結論；derived = 依附件規則推導（官方沒有範例的邊界）
+# 財政部沒有官方試算器，所以沒有 calculator-verified。
+# ---------------------------------------------------------------------------
+golden_cases:
+  - { id: G01, input: { task: is_valid, digits: "04595257", divisor: 5 },  expected: 1, status: published-example, source: 附件第三節：Z = 40，能被 5 整除，符合邏輯 }
+  - { id: G02, input: { task: is_valid, digits: "10458575", divisor: 5 },  expected: 1, status: published-example, source: 附件第三節：第 7 位為 7，Z1 = 21、Z2 = 20，符合邏輯 }
+  - { id: G03, input: { task: is_valid, digits: "10458574", divisor: 5 },  expected: 1, status: published-example, source: 附件第三節：第 7 位為 7，Z1 = 20、Z2 = 19，符合邏輯 }
+  - { id: G04, input: { task: is_valid, digits: "04595252", divisor: 5 },  expected: 1, status: published-example, source: 附件第三節：Z = 35，能被 5 整除，符合邏輯（修正前無效，見 G09） }
+  - { id: G05, input: { task: is_valid, digits: "10458570", divisor: 5 },  expected: 1, status: published-example, source: 附件第三節：第 7 位為 7，Z1 = 16、Z2 = 15，能被 5 整除，符合邏輯（修正前無效，見 G10） }
+  - { id: G06, input: { task: is_valid, digits: "04595257", divisor: 10 }, expected: 1, status: published-example, source: 附件第一節（修正前）：Z = 40，能被 10 整除，符合邏輯 }
+  - { id: G07, input: { task: is_valid, digits: "10458575", divisor: 10 }, expected: 1, status: published-example, source: 附件第一節（修正前）：Z2 = 20 能被 10 整除，符合邏輯 }
+  - { id: G08, input: { task: is_valid, digits: "10458574", divisor: 10 }, expected: 1, status: published-example, source: 附件第一節（修正前）：Z1 = 20 能被 10 整除，符合邏輯 }
+  - { id: G09, input: { task: is_valid, digits: "04595252", divisor: 10 }, expected: 0, status: derived, source: 附件第三節的 Z = 35 不能被 10 整除，修正前無效（附件沒有寫修正前結論） }
+  - { id: G10, input: { task: is_valid, digits: "10458570", divisor: 10 }, expected: 0, status: derived, source: 附件第三節的 Z1 = 16、Z2 = 15 都不能被 10 整除，修正前無效 }
+  - { id: G11, input: { task: is_valid, digits: "10458579", divisor: 5 },  expected: 1, status: derived, source: 第 7 位為 7，Z1 = 25、Z2 = 24；只有取 1 的和能被 5 整除。第 7 位乘積照加 10（S = 34）或只取 0 都會判為無效 }
+  - { id: G12, input: { task: is_valid, digits: "10458572", divisor: 5 },  expected: 0, status: derived, source: 第 7 位為 7，Z1 = 18、Z2 = 17，兩個和都不能被 5 整除 }
+  - { id: G13, input: { task: is_valid, digits: "04595253", divisor: 5 },  expected: 0, status: derived, source: Z = 36，不能被 5 整除 }
+  - { id: G14, input: { task: min_check_digit, digits: "0459525", divisor: 5 },  expected: 2, status: derived, source: 前 7 碼的和 33，第 8 碼 2、7 使 Z 為 35、40（附件第三節的 04595252、04595257 即這兩個），最小是 2 }
+  - { id: G15, input: { task: min_check_digit, digits: "0459525", divisor: 10 }, expected: 7, status: derived, source: 修正前只有第 8 碼 7（Z = 40，附件第一節的 04595257） }
+  - { id: G16, input: { task: min_check_digit, digits: "1045857", divisor: 5 },  expected: 0, status: derived, source: 第 7 位為 7，第 8 碼 0、4、5、9 符合（附件的 10458570、10458574、10458575 都在內，另加 10458579），最小是 0 }
+  - { id: G17, input: { task: min_check_digit, digits: "1045857", divisor: 10 }, expected: 4, status: derived, source: 修正前只有第 8 碼 4、5（附件第一節的 10458574、10458575），最小是 4 }
+  - { id: G18, input: { task: count_valid, digits: "04595257,04595252,10458570,10458572", divisor: 5 },  expected: 3, status: derived, source: 前三個符合（G01、G04、G05），10458572 不符合（G12） }
+  - { id: G19, input: { task: count_valid, digits: "04595257,04595252,10458570,10458572", divisor: 10 }, expected: 1, status: derived, source: 修正前只有 04595257 符合（G06、G09、G10） }
+  - { id: G20, input: { task: min_check_digit, digits: "0459524", divisor: 5 },  expected: 2, status: derived, source: 前 7 碼的和 38，第 8 碼 2、7 符合，最小是 2（新舊規則答案相同的例子，見 G21） }
+  - { id: G21, input: { task: min_check_digit, digits: "0459524", divisor: 10 }, expected: 2, status: derived, source: 修正前只有第 8 碼 2（Z = 40），與現行答案相同 }
+
+# 0.1.0 的 Q1–Q6 已由 Calvin 2026-11-13 逐題裁定，結論寫在對應的欄位與 changelog（docs/family-admission.md B3）。
+open_questions: []
+
+changelog:
+  - { version: 0.1.1, date: "2026-11-13", note: "Calvin 逐題裁定 Q1–Q6：Q1 每 split 100 題、差異題 47% 不變；Q2 一個 family、id 維持 ban_checksum；Q3 不出指定修正前規則的題；Q4「第 8 碼可填幾個」改成「最小的有效第 8 碼」（rule.py、rule.js、sampler、hypotheses、D01–D06 模板、G14–G17 隨之改，新增 G20、G21）；Q5 隱含模板 T09 保留；Q6 published_on 維持公告頁的 2021-12-22，財政部函不填。open_questions 清空" }
+  - { version: 0.1.0, date: "2026-11-13", note: 初版草稿（TAI-662）：依 bronze/mof-ban-checksum 附件實作現行與修正前兩種整除條件；三種整數題型；golden 8 筆官方範例（5 個號碼）、11 筆推導 }

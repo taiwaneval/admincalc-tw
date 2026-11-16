@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use AdminCalc-TW, please cite it as below."
+title: "AdminCalc-TW: a benchmark of Taiwan administrative calculations"
+type: dataset
+version: "admincalc-2026Q4"
+authors:
+  - family-names: Ku
+    given-names: Calvin
+repository-code: "https://github.com/taiwaneval/admincalc-tw"
+url: "https://huggingface.co/datasets/taiwaneval/AdminCalc-TW"
+license: "Apache-2.0"
+keywords:
+  - benchmark
+  - evaluation
+  - Taiwan
+  - business ID checksum
+  - Minguo calendar
+  - Traditional Chinese

@@ -1,0 +1,18 @@
+{
+ "source_type": "announcement",
+ "source_id": "mof-ban-checksum",
+ "title": "營利事業統一編號檢查碼邏輯修正說明（附件）",
+ "publisher": "財政部財政資訊中心",
+ "url": "https://www.fia.gov.tw/singlehtml/3?cntId=c4d9cff38c8642ef8872774ee9987283",
+ "retrieved_url": "https://www.fia.gov.tw/download/ff9c37611e9e46dab952676d24dc0b67",
+ "published_on": "2021-12-22",
+ "document_number": null,
+ "version": null,
+ "source_file": "source.pdf",
+ "media_type": "application/pdf",
+ "sha256": "ade10f01b9146834f65c1d7f3387bcefc6c013535517ccf7ea98a42a7f5da825",
+ "fetched_at": "2026-11-13T03:13:47+08:00",
+ "fetched_by": "tools/fetch_source.py 0.1.0",
+ "license": "政府資料開放授權條款-第1版",
+ "note": "published_on 取自公告頁的「發布日期：110-12-22」（發布單位：電子發票組）；附件 PDF 本身沒有日期。document_number 為 null：公告頁與附件都沒有發文字號。version 為 null：附件沒有版次。公告頁另寫明公私部門的檢核程式應於 112 年 3 月 31 日前完成修改，預計 112 年 4 月以後逐步釋出新產製的統一編號。授權依財政資訊中心〈政府網站資料開放宣告〉（https://www.fia.gov.tw/singlehtml/76）採政府資料開放授權條款－第 1 版，使用時應註明出處。查證紀錄見 Linear TAI-660。"
+}

@@ -1,0 +1,24 @@
+{
+ "schema_version": "0.1.0",
+ "datasets": [
+  {
+   "id": "admincalc",
+   "name": "AdminCalc-TW",
+   "families": [
+    "ban_checksum",
+    "minguo_year"
+   ],
+   "latest_release": "admincalc-2026Q4",
+   "releases": [
+    {
+     "release": "admincalc-2026Q4",
+     "site_data": "index/admincalc-2026Q4/site-data/"
+    }
+   ],
+   "public": {
+    "github": "taiwaneval/admincalc-tw",
+    "huggingface": "taiwaneval/AdminCalc-TW"
+   }
+  }
+ ]
+}

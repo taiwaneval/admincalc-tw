@@ -1,0 +1,9 @@
+reviews:
+  - reviewer: "Calvin Ku"
+    role: "owner"
+    date: "2026-11-13"
+    spec_sha256: 17c7c34c4d4f23576d53384dead9feb531598e9038c3edd30221c0e4b88bc584
+    rule_sha256: cb71419fd84d472da989c56800af74d1e6c41a8eb1b24b509480cbef68afc0d8
+    templates_sha256: afb846b005473aef1bdad5cada4c3d69c9c58b103c42f94a1461fe8010566119
+    sampler_sha256: f8c22f4ea1ee9852c534961f9b12cc6035fff9dbd7756ebb1fc0a00a3a88a1f0
+    verdict: approved

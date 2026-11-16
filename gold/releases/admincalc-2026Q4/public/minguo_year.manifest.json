@@ -1,0 +1,69 @@
+{
+ "family": "minguo_year",
+ "family_version": "0.1.1",
+ "family_status": "reviewed",
+ "spec_sha256": "43b3dcd030f96b3f7c9a515fbefca953939cc3535754cbe04b21dbb800733d1a",
+ "rule_sha256": "b9aedf98520d5c9bea8ef55ae4a2c2a84557d99bf80c72d8e2c1647d2bbc36f5",
+ "templates_sha256": "918d0ae40a90bef622fa52aecf294ce6def01ba569d6314751dda944889b3937",
+ "sampler_sha256": "8aaf5a9a31ad5a777db08c335fada82b0303a677e98fb5af939a303483dd7817",
+ "generator_version": "0.6.0",
+ "release": "admincalc-2026Q4",
+ "split": "public",
+ "salt": "taiwaneval-public-2026",
+ "n": 100,
+ "rejected": 0,
+ "lineage": {
+  "laws": {},
+  "sources": {
+   "moi-ris-year-table": {
+    "source_type": "dataset",
+    "title": "年歲對照表",
+    "publisher": "內政部戶政司",
+    "published_on": null,
+    "document_number": null,
+    "version": null,
+    "bronze_sha256": "bb65417d936fa738831fe956e3b1030c191b1e12227de0103505fcdb487da2b4",
+    "fetched_at": "2026-11-13T19:49:09+08:00"
+   }
+  }
+ },
+ "as_of": "2026-11-16",
+ "diversity": {
+  "template_counts": {
+   "A01": 4,
+   "A02": 4,
+   "A03": 4,
+   "A04": 4,
+   "A05": 3,
+   "A06": 4,
+   "A07": 4,
+   "A08": 3,
+   "D01": 3,
+   "D02": 4,
+   "D03": 4,
+   "D04": 4,
+   "D05": 4,
+   "D06": 4,
+   "D07": 3,
+   "D08": 4,
+   "T01": 4,
+   "T02": 4,
+   "T03": 4,
+   "T04": 4,
+   "T05": 4,
+   "T06": 4,
+   "T07": 4,
+   "T08": 4,
+   "T09": 4,
+   "T10": 4
+  },
+  "max_template_share": 0.04,
+  "max_template_share_cap": 0.15,
+  "skeletons": 98,
+  "near_duplicates": 0,
+  "max_skeleton_reuse": 1,
+  "param_duplicates": 0,
+  "pairs": 8,
+  "paired_items": 16
+ }
+}

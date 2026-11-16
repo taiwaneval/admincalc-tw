@@ -1,0 +1,46 @@
+<svg viewBox="0 0 956 388" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="scores-title scores-desc">
+<title id="scores-title">AdminCalc-TW admincalc-2026Q4: score by model</title>
+<desc id="scores-desc">DeepSeek-V4.1-Flash 0.85; GLM-5.3-Flash 0.75; Beam 1.0 0.68; gpt-oss-20b 0.66; Qwen3.8-Flash 0.65; Qwen3.8-27B 0.62; Flint 1.0 0.55; TAIDE 12B 0.54; Breeze 2 8B 0.33; naive solver 0.27</desc>
+<rect width="956" height="388" rx="8" fill="#FFFFFF"/>
+<text x="24" y="36" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="600" fill="#202526">AdminCalc-TW admincalc-2026Q4: score by model</text>
+<text x="24" y="58" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#465156">Mean accuracy across rule families, public split. Higher is better.</text>
+<line x1="212.0" y1="84" x2="212.0" y2="344" stroke="#E0E5E7" stroke-width="1"/>
+<text x="212.0" y="362" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#465156" text-anchor="middle">0</text>
+<line x1="382.0" y1="84" x2="382.0" y2="344" stroke="#E0E5E7" stroke-width="1"/>
+<text x="382.0" y="362" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#465156" text-anchor="middle">0.25</text>
+<line x1="552.0" y1="84" x2="552.0" y2="344" stroke="#E0E5E7" stroke-width="1"/>
+<text x="552.0" y="362" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#465156" text-anchor="middle">0.5</text>
+<line x1="722.0" y1="84" x2="722.0" y2="344" stroke="#E0E5E7" stroke-width="1"/>
+<text x="722.0" y="362" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#465156" text-anchor="middle">0.75</text>
+<line x1="892.0" y1="84" x2="892.0" y2="344" stroke="#E0E5E7" stroke-width="1"/>
+<text x="892.0" y="362" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#465156" text-anchor="middle">1</text>
+<line x1="392.2" y1="80" x2="392.2" y2="344" stroke="#70858E" stroke-width="1.5" stroke-dasharray="4,3"/>
+<text x="398.2" y="86" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#465156">naive solver 0.27</text>
+<text x="200" y="110.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#202526" text-anchor="end">DeepSeek-V4.1-Flash</text>
+<path d="M212.0 98.0 H789.4 Q793.4 98.0 793.4 102.0 V110.0 Q793.4 114.0 789.4 114.0 H212.0 Z" fill="#193C4B"/>
+<text x="799.4" y="110.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#202526" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">0.85</text>
+<text x="200" y="138.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#202526" text-anchor="end">GLM-5.3-Flash</text>
+<path d="M212.0 126.0 H718.0 Q722.0 126.0 722.0 130.0 V138.0 Q722.0 142.0 718.0 142.0 H212.0 Z" fill="#193C4B"/>
+<text x="728.0" y="138.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#202526" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">0.75</text>
+<text x="200" y="166.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#202526" text-anchor="end">Beam 1.0</text>
+<path d="M212.0 154.0 H670.4 Q674.4 154.0 674.4 158.0 V166.0 Q674.4 170.0 670.4 170.0 H212.0 Z" fill="#193C4B"/>
+<text x="680.4" y="166.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#202526" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">0.68</text>
+<text x="200" y="194.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#202526" text-anchor="end">gpt-oss-20b</text>
+<path d="M212.0 182.0 H656.8 Q660.8 182.0 660.8 186.0 V194.0 Q660.8 198.0 656.8 198.0 H212.0 Z" fill="#193C4B"/>
+<text x="666.8" y="194.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#202526" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">0.66</text>
+<text x="200" y="222.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#202526" text-anchor="end">Qwen3.8-Flash</text>
+<path d="M212.0 210.0 H646.6 Q650.6 210.0 650.6 214.0 V222.0 Q650.6 226.0 646.6 226.0 H212.0 Z" fill="#193C4B"/>
+<text x="656.6" y="222.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#202526" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">0.65</text>
+<text x="200" y="250.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#202526" text-anchor="end">Qwen3.8-27B</text>
+<path d="M212.0 238.0 H629.6 Q633.6 238.0 633.6 242.0 V250.0 Q633.6 254.0 629.6 254.0 H212.0 Z" fill="#193C4B"/>
+<text x="639.6" y="250.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#202526" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">0.62</text>
+<text x="200" y="278.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#202526" text-anchor="end">Flint 1.0</text>
+<path d="M212.0 266.0 H585.4 Q589.4 266.0 589.4 270.0 V278.0 Q589.4 282.0 585.4 282.0 H212.0 Z" fill="#193C4B"/>
+<text x="595.4" y="278.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#202526" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">0.55</text>
+<text x="200" y="306.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#202526" text-anchor="end">TAIDE 12B</text>
+<path d="M212.0 294.0 H571.8 Q575.8 294.0 575.8 298.0 V306.0 Q575.8 310.0 571.8 310.0 H212.0 Z" fill="#193C4B"/>
+<text x="581.8" y="306.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#202526" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">0.54</text>
+<text x="200" y="334.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#202526" text-anchor="end">Breeze 2 8B</text>
+<path d="M212.0 322.0 H432.4 Q436.4 322.0 436.4 326.0 V334.0 Q436.4 338.0 432.4 338.0 H212.0 Z" fill="#193C4B"/>
+<text x="442.4" y="334.0" font-family="-apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" fill="#202526" stroke="#FFFFFF" stroke-width="3" paint-order="stroke">0.33</text>
+</svg>

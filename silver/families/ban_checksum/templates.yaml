@@ -1,0 +1,110 @@
+# ban_checksum 題幹模板（2026-11-13 草稿，0.1.1 依 Calvin 的 Q4 改寫 D01–D06；待 Calvin 逐條簽核）
+# 佔位符：{name} {where} {number} {prefix} {numbers} {k}
+#   number／prefix／numbers 由 sampler.py 依 number_style 旋鈕渲染（半形、加「」、全形數字）；numbers 以「、」「，」「；」分隔。
+#   where 是號碼出現的場合（發票上、報帳單據上……），不含公司名稱；k 是清單裡的號碼個數。
+# 每個模板標 register（formal / casual）與 implicit（題幹沒有寫「現行」或「財政部」，只說檢查碼）。
+# 題幹不讓號碼搭配公司名稱（TAI-662 Constraints）。題目一律依現行規則（可被 5 整除）作答，題幹不寫出整除條件。
+
+answer_instruction: 請只回答一個整數，不要附任何單位或說明。
+
+# 刻意配對（TAI-647）：is_valid 一般題中 rate 比例組成 size 題一組，同號碼、不同模板，標 pair_id，用來量「換問法，答案會不會變」。
+# 產生器只在 templates 池配對，is_valid 只占全部題目的一半，所以比例設 0.3（annual_leave_days 是 0.2）：
+# 每 split 200 題時 15 組（tests/test_generate_diversity.py 的下限），100 題時 7–8 組。
+pairing:
+  rate: 0.3
+  size: 2
+
+# is_valid：單一號碼是否符合邏輯，答 1 或 0（V1–V6）
+templates:
+  - id: T01
+    register: formal
+    text: "請依財政部現行的營利事業統一編號檢查碼邏輯，判斷統一編號{number}是否符合邏輯。符合請回答 1，不符合請回答 0。"
+  - id: T02
+    register: formal
+    style: accounting
+    text: "會計作業：{where}的營利事業統一編號為{number}。請依現行檢查碼規則檢核此號碼，符合邏輯回答 1，不符合回答 0。"
+  - id: T03
+    register: casual
+    text: "{where}有一組統編{number}，照現在的檢查碼規則算，這組號碼對不對？對的話回 1，不對回 0。"
+  - id: T04
+    register: casual
+    style: line
+    text: "請問一下～統一編號{number}用檢查碼驗算會過嗎？依財政部現行規則，會過回答 1，不會過回答 0。"
+  - id: T05
+    register: formal
+    style: qa
+    text: "【稅務Q&A】問：營利事業統一編號{number}是否通過檢查碼驗證？（依現行規則；通過答 1，未通過答 0）"
+  - id: T06
+    register: formal
+    text: "{name}在核對{where}的 8 位數統一編號{number}，想知道這組號碼的檢查碼是否正確。請依財政部目前採用的邏輯判斷，正確回答 1，錯誤回答 0。"
+  - id: T07
+    register: formal
+    style: developer
+    text: "工程師{name}在寫統一編號欄位的驗證，測試資料是{number}。依財政部現行的檢查碼邏輯，這筆資料應該通過驗證嗎？應通過回答 1，不應通過回答 0。"
+  - id: T08
+    register: formal
+    style: distractor
+    text: "{where}寫的統一編號是{number}，同一張單據上的金額是 12,600 元、日期是 3 月 5 日。只看統一編號，依現行檢查碼邏輯它是否符合？符合答 1，不符合答 0。"
+  # T09 刻意不寫「現行」或「財政部」，量模型沒有提示時用哪一版規則；現行規則是唯一適用的規則，答案仍然唯一（Calvin 2026-11-13 Q5：保留）
+  - id: T09
+    register: formal
+    implicit: true
+    style: implicit
+    text: "營利事業統一編號{number}的檢查碼是否正確？正確請回答 1，錯誤請回答 0。"
+  - id: T10
+    register: casual
+    style: line
+    text: "{name}拿到一組統一編號{number}，想先自己驗算一下。用財政部現在的檢查碼算法，這組號碼成立嗎？成立回 1，不成立回 0。"
+
+# min_check_digit：給前 7 碼，0–9 之中能讓號碼符合邏輯的第 8 碼裡最小的那一個（C1、C2；Calvin 2026-11-13 Q4）
+# 現行規則下能用的第 8 碼有 2 或 4 個，所以每個模板都要寫明「最小的」，答案才唯一。
+digit_templates:
+  - id: D01
+    register: formal
+    text: "營利事業統一編號的前 7 碼是{prefix}。依財政部現行的檢查碼邏輯，第 8 碼填 0 到 9 的哪些數字能讓整組號碼符合邏輯？請回答其中最小的數字。"
+  - id: D02
+    register: casual
+    text: "統編前七碼是{prefix}，最後一碼忘了。照現在的檢查碼規則，0～9 裡面填進去會過的數字中，最小的是哪一個？"
+  - id: D03
+    register: formal
+    style: developer
+    text: "工程師{name}要產生測試用的統一編號，前 7 碼固定為{prefix}。依財政部現行檢查碼邏輯，能通過驗證的第 8 碼（0 到 9）之中，最小的是多少？"
+  - id: D04
+    register: formal
+    text: "{where}的統一編號最後一碼看不清楚，前 7 碼是{prefix}。依現行檢查碼規則，0 到 9 之中能讓號碼符合邏輯的最後一碼，最小是哪個數字？"
+  - id: D05
+    register: formal
+    style: qa
+    text: "【稅務Q&A】問：統一編號前 7 位為{prefix}時，第 8 位填入 0～9 的哪些數字會符合現行檢查碼邏輯？請回答符合的數字中最小的一個。"
+  - id: D06
+    register: formal
+    text: "依財政部目前的統一編號檢查碼邏輯，若前七碼為{prefix}，在 0 到 9 之中，使號碼通過檢查的第八碼最小是多少？"
+
+# count_valid：一串號碼中有幾個符合邏輯（L1、L2）
+list_templates:
+  - id: L01
+    register: formal
+    text: "下列營利事業統一編號中，依財政部現行的檢查碼邏輯，有幾個符合邏輯？{numbers}"
+  - id: L02
+    register: formal
+    style: accounting
+    text: "會計{name}整理了{where}的{k}個統一編號：{numbers}。依現行檢查碼規則，其中有幾個能通過驗證？"
+  - id: L03
+    register: casual
+    text: "幫我看一下這幾組統編：{numbers}，照現在的檢查碼規則，總共有幾組是對的？"
+  - id: L04
+    register: formal
+    style: developer
+    text: "系統匯入了以下{k}筆統一編號：{numbers}。依財政部現行的檢查碼邏輯，應有幾筆通過檢核？"
+  - id: L05
+    register: formal
+    style: qa
+    text: "【稅務Q&A】問：{numbers}這幾個統一編號，依現行檢查碼邏輯共有幾個正確？"
+  - id: L06
+    register: formal
+    text: "以下是{where}出現的統一編號：{numbers}。若依財政部目前採用的檢查碼邏輯檢查，符合的號碼有幾個？"
+
+# 實體池（與 annual_leave_days 相同）。只用在部分模板的 {name}，是經手號碼的人，不是號碼所屬的事業。
+names:
+  surnames: [陳, 林, 黃, 張, 李, 王, 吳, 劉, 蔡, 楊, 許, 鄭, 謝, 郭, 洪]
+  given: [怡君, 家豪, 淑芬, 建宏, 美玲, 志明, 雅婷, 俊傑, 宗翰, 佩珊, 冠宇, 欣怡, 柏翰, 詩涵, 承翰]

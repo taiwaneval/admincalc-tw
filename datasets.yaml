@@ -1,0 +1,14 @@
+datasets:
+  admincalc:
+    name: AdminCalc-TW
+    families:
+    - ban_checksum
+    - minguo_year
+    releases:
+    - admincalc-2026Q4
+    release_name_format: admincalc-{period}
+    default_weights: {}
+    public:
+      github: taiwaneval/admincalc-tw
+      huggingface: taiwaneval/AdminCalc-TW
+      templates: tools/public_export/admincalc

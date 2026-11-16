@@ -1,0 +1,46 @@
+{
+ "sources": [
+  {
+   "source_type": "announcement",
+   "source_id": "mof-ban-checksum",
+   "title": "營利事業統一編號檢查碼邏輯修正說明（附件）",
+   "publisher": "財政部財政資訊中心",
+   "url": "https://www.fia.gov.tw/singlehtml/3?cntId=c4d9cff38c8642ef8872774ee9987283",
+   "retrieved_url": "https://www.fia.gov.tw/download/ff9c37611e9e46dab952676d24dc0b67",
+   "published_on": "2021-12-22",
+   "document_number": null,
+   "version": null,
+   "source_file": "source.pdf",
+   "media_type": "application/pdf",
+   "sha256": "ade10f01b9146834f65c1d7f3387bcefc6c013535517ccf7ea98a42a7f5da825",
+   "fetched_at": "2026-11-13T03:13:47+08:00",
+   "fetched_by": "tools/fetch_source.py 0.1.0",
+   "license": "政府資料開放授權條款-第1版",
+   "note": "published_on 取自公告頁的「發布日期：110-12-22」（發布單位：電子發票組）；附件 PDF 本身沒有日期。document_number 為 null：公告頁與附件都沒有發文字號。version 為 null：附件沒有版次。公告頁另寫明公私部門的檢核程式應於 112 年 3 月 31 日前完成修改，預計 112 年 4 月以後逐步釋出新產製的統一編號。授權依財政資訊中心〈政府網站資料開放宣告〉（https://www.fia.gov.tw/singlehtml/76）採政府資料開放授權條款－第 1 版，使用時應註明出處。查證紀錄見 Linear TAI-660。",
+   "families": [
+    "ban_checksum"
+   ]
+  },
+  {
+   "source_type": "dataset",
+   "source_id": "moi-ris-year-table",
+   "title": "年歲對照表",
+   "publisher": "內政部戶政司",
+   "url": "https://www.ris.gov.tw/app/portal/219",
+   "retrieved_url": "https://www.ris.gov.tw/documents/html/8/1/219.html",
+   "published_on": null,
+   "document_number": null,
+   "version": null,
+   "source_file": "source.html",
+   "media_type": "text/html",
+   "sha256": "bb65417d936fa738831fe956e3b1030c191b1e12227de0103505fcdb487da2b4",
+   "fetched_at": "2026-11-13T19:49:09+08:00",
+   "fetched_by": "tools/fetch_source.py 0.2.0",
+   "license": "政府資料開放授權條款－第 1 版（使用時應註明出處；內政部戶政司〈政府網站資料開放宣告〉https://www.ris.gov.tw/app/portal/133）",
+   "note": "頁面（戶政司 › 公開資訊 › 應用資料 › 年歲對照表）與 iframe 嵌入的原檔都沒有發布日期、字號或版次，所以 published_on、document_number、version 都是 null（Calvin 2026-11-13 裁定採用，TAI-659 研究文件第 7.1 節）。表有五欄（民國、西元、清代、日據時代、農曆歲次），由民國120／2031 排到民國前29／1883；minguo_year family 只用民國 1–120 年的民國與西元兩欄。沒有版次的官方網頁表格（docs/bronze-non-law-sources.md 第 3 節例外）。Last-Modified: Fri, 27 Mar 2026 03:00:24 GMT（伺服器中繼資料，不是官方日期）。排除每次請求都會變的內容：Incapsula 防火牆插入的 <script>（src 以 /_Incapsula_Resource? 開頭），1 處；sha256 欄位仍是原始 bytes 的 hash；排除後的內容 sha256: df0970e684043621dd03d08f1058a80a533bbfc4b89fb2176e2630fc902475a7。",
+   "families": [
+    "minguo_year"
+   ]
+  }
+ ]
+}

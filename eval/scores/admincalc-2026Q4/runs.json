@@ -1,0 +1,621 @@
+{
+ "schema_version": "0.1.0",
+ "release": "admincalc-2026Q4",
+ "item_fields": [
+  "evaluation_target",
+  "family",
+  "split",
+  "item_id",
+  "branch",
+  "control",
+  "pair_id",
+  "gold",
+  "parsed_answer",
+  "correct",
+  "error",
+  "attribution",
+  "log_sha256"
+ ],
+ "runs": [
+  {
+   "log_file": "2026-11-16T06-41-03-00-00_ban-checksum-admincalc-2026Q4-public_9ETDKUcTPhgxm7zUNDhBjy.eval",
+   "log_sha256": "d947e9cb80a2c0a7d15de6c444a7a20a0b243525f552335b25ba9785272ba90c",
+   "log_status": "success",
+   "run_id": "JKMpMrEWtBe7Aqjje9fvBk",
+   "created": "2026-11-16T06:41:03+00:00",
+   "model": "mockllm/model",
+   "evaluation_target": "fake-oracle@none@none@direct",
+   "family": "ban_checksum",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "disable",
+   "fake": "oracle",
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "17c7c34c4d4f23576d53384dead9feb531598e9038c3edd30221c0e4b88bc584",
+     "rule_sha256": "cb71419fd84d472da989c56800af74d1e6c41a8eb1b24b509480cbef68afc0d8",
+     "templates_sha256": "afb846b005473aef1bdad5cada4c3d69c9c58b103c42f94a1461fe8010566119",
+     "sampler_sha256": "f8c22f4ea1ee9852c534961f9b12cc6035fff9dbd7756ebb1fc0a00a3a88a1f0",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T06-41-08-00-00_minguo-year-admincalc-2026Q4-public_nir5c8jEY8woagsSpMHRSd.eval",
+   "log_sha256": "d8c1e0676082f3a1d3b10bc2bd2cd8bdb37748239a552346723ab14d20f1a0cf",
+   "log_status": "success",
+   "run_id": "jCaMrir8XCa8z5d7oiQo6F",
+   "created": "2026-11-16T06:41:08+00:00",
+   "model": "mockllm/model",
+   "evaluation_target": "fake-oracle@none@none@direct",
+   "family": "minguo_year",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "disable",
+   "fake": "oracle",
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "43b3dcd030f96b3f7c9a515fbefca953939cc3535754cbe04b21dbb800733d1a",
+     "rule_sha256": "b9aedf98520d5c9bea8ef55ae4a2c2a84557d99bf80c72d8e2c1647d2bbc36f5",
+     "templates_sha256": "918d0ae40a90bef622fa52aecf294ce6def01ba569d6314751dda944889b3937",
+     "sampler_sha256": "8aaf5a9a31ad5a777db08c335fada82b0303a677e98fb5af939a303483dd7817",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T06-41-12-00-00_ban-checksum-admincalc-2026Q4-public_6mJ5KRgB9WMg2YYaMRbVEo.eval",
+   "log_sha256": "007ed275bf4d29fbd67a0c1f6c89e75461195a12865afb2422cac36ac20adaa5",
+   "log_status": "success",
+   "run_id": "Lv7HhqMZEAU3S29NrozQA4",
+   "created": "2026-11-16T06:41:12+00:00",
+   "model": "mockllm/model",
+   "evaluation_target": "fake-naive@none@none@direct",
+   "family": "ban_checksum",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "disable",
+   "fake": "naive",
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "17c7c34c4d4f23576d53384dead9feb531598e9038c3edd30221c0e4b88bc584",
+     "rule_sha256": "cb71419fd84d472da989c56800af74d1e6c41a8eb1b24b509480cbef68afc0d8",
+     "templates_sha256": "afb846b005473aef1bdad5cada4c3d69c9c58b103c42f94a1461fe8010566119",
+     "sampler_sha256": "f8c22f4ea1ee9852c534961f9b12cc6035fff9dbd7756ebb1fc0a00a3a88a1f0",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T06-41-16-00-00_minguo-year-admincalc-2026Q4-public_VXcNgzbJ3u2bDEesrdS8XQ.eval",
+   "log_sha256": "e31b091bdf5e653b528a8ea5756472e0cdb97fbfe0346954971d6cec3955fd5a",
+   "log_status": "success",
+   "run_id": "Bkjheh5nUoinoJfRZVwPKW",
+   "created": "2026-11-16T06:41:16+00:00",
+   "model": "mockllm/model",
+   "evaluation_target": "fake-naive@none@none@direct",
+   "family": "minguo_year",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "disable",
+   "fake": "naive",
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "43b3dcd030f96b3f7c9a515fbefca953939cc3535754cbe04b21dbb800733d1a",
+     "rule_sha256": "b9aedf98520d5c9bea8ef55ae4a2c2a84557d99bf80c72d8e2c1647d2bbc36f5",
+     "templates_sha256": "918d0ae40a90bef622fa52aecf294ce6def01ba569d6314751dda944889b3937",
+     "sampler_sha256": "8aaf5a9a31ad5a777db08c335fada82b0303a677e98fb5af939a303483dd7817",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T06-41-20-00-00_ban-checksum-admincalc-2026Q4-public_PUGneVLSdJTzyCP3xG28LJ.eval",
+   "log_sha256": "531040d62c5d8cb6a4ce0e0b5b70ba5dd64c93a91ffc0d7e04db03242ec2f842",
+   "log_status": "success",
+   "run_id": "ce3mtZaY9uZkCq2Xm63P5g",
+   "created": "2026-11-16T06:41:20+00:00",
+   "model": "mockllm/model",
+   "evaluation_target": "fake-random@none@none@direct",
+   "family": "ban_checksum",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "disable",
+   "fake": "random",
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "17c7c34c4d4f23576d53384dead9feb531598e9038c3edd30221c0e4b88bc584",
+     "rule_sha256": "cb71419fd84d472da989c56800af74d1e6c41a8eb1b24b509480cbef68afc0d8",
+     "templates_sha256": "afb846b005473aef1bdad5cada4c3d69c9c58b103c42f94a1461fe8010566119",
+     "sampler_sha256": "f8c22f4ea1ee9852c534961f9b12cc6035fff9dbd7756ebb1fc0a00a3a88a1f0",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T06-41-24-00-00_minguo-year-admincalc-2026Q4-public_2hLMkmzavxnRzewGT3kT93.eval",
+   "log_sha256": "d65ab5f7964317d2226c385d0015e4ed827e5ba70d1fa1ad886532eb3480a8a3",
+   "log_status": "success",
+   "run_id": "QxVkgCBHn8Dc7JmnpdLPTM",
+   "created": "2026-11-16T06:41:24+00:00",
+   "model": "mockllm/model",
+   "evaluation_target": "fake-random@none@none@direct",
+   "family": "minguo_year",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "disable",
+   "fake": "random",
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "43b3dcd030f96b3f7c9a515fbefca953939cc3535754cbe04b21dbb800733d1a",
+     "rule_sha256": "b9aedf98520d5c9bea8ef55ae4a2c2a84557d99bf80c72d8e2c1647d2bbc36f5",
+     "templates_sha256": "918d0ae40a90bef622fa52aecf294ce6def01ba569d6314751dda944889b3937",
+     "sampler_sha256": "8aaf5a9a31ad5a777db08c335fada82b0303a677e98fb5af939a303483dd7817",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T06-52-27-00-00_ban-checksum-admincalc-2026Q4-public_GvoigobFksnfKeXfTBxwvs.eval",
+   "log_sha256": "1c2bd6fd648e31c9ff8f1e0f448572b89e6a5b60779879c4f4ef69c584c6198d",
+   "log_status": "success",
+   "run_id": "cogAhfEFocfGfRUNNiU9vv",
+   "created": "2026-11-16T06:52:27+00:00",
+   "model": "openai-api/opencode/beam-free",
+   "evaluation_target": "beam-1.0@api@opencode-free@max",
+   "family": "ban_checksum",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "default",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "17c7c34c4d4f23576d53384dead9feb531598e9038c3edd30221c0e4b88bc584",
+     "rule_sha256": "cb71419fd84d472da989c56800af74d1e6c41a8eb1b24b509480cbef68afc0d8",
+     "templates_sha256": "afb846b005473aef1bdad5cada4c3d69c9c58b103c42f94a1461fe8010566119",
+     "sampler_sha256": "f8c22f4ea1ee9852c534961f9b12cc6035fff9dbd7756ebb1fc0a00a3a88a1f0",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T06-52-27-00-00_ban-checksum-admincalc-2026Q4-public_QQ2CNs6anM3764Cri8scnn.eval",
+   "log_sha256": "41781c50c5921df008c89e89ae1af10b34dd103ea44c2295b121ed01e1240b5e",
+   "log_status": "success",
+   "run_id": "WfL9to5eff6Ce5jmpiRk2D",
+   "created": "2026-11-16T06:52:27+00:00",
+   "model": "openai-api/opencode/glm-5.3-flash",
+   "evaluation_target": "glm-5.3-flash@api@opencode@max",
+   "family": "ban_checksum",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "default",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "17c7c34c4d4f23576d53384dead9feb531598e9038c3edd30221c0e4b88bc584",
+     "rule_sha256": "cb71419fd84d472da989c56800af74d1e6c41a8eb1b24b509480cbef68afc0d8",
+     "templates_sha256": "afb846b005473aef1bdad5cada4c3d69c9c58b103c42f94a1461fe8010566119",
+     "sampler_sha256": "f8c22f4ea1ee9852c534961f9b12cc6035fff9dbd7756ebb1fc0a00a3a88a1f0",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T06-52-27-00-00_ban-checksum-admincalc-2026Q4-public_mTUXSfernHeuba3NvN6FB7.eval",
+   "log_sha256": "aeef09e043d4905ef2698639f79a4331a7805cf72de8d44c2e078938d5cf43e7",
+   "log_status": "success",
+   "run_id": "DUQKRWn5NwDYyAwzHYJ65J",
+   "created": "2026-11-16T06:52:27+00:00",
+   "model": "openai-api/opencode/deepseek-v4.1-flash",
+   "evaluation_target": "deepseek-v4.1-flash@api@opencode@max",
+   "family": "ban_checksum",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "default",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "17c7c34c4d4f23576d53384dead9feb531598e9038c3edd30221c0e4b88bc584",
+     "rule_sha256": "cb71419fd84d472da989c56800af74d1e6c41a8eb1b24b509480cbef68afc0d8",
+     "templates_sha256": "afb846b005473aef1bdad5cada4c3d69c9c58b103c42f94a1461fe8010566119",
+     "sampler_sha256": "f8c22f4ea1ee9852c534961f9b12cc6035fff9dbd7756ebb1fc0a00a3a88a1f0",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T07-06-07-00-00_minguo-year-admincalc-2026Q4-public_QBjxo8F5wwhLQ2qzRwXzWb.eval",
+   "log_sha256": "099ed118b9eb7252910850a3e57731befb88b1f8c2c494e60734867943dc4de3",
+   "log_status": "success",
+   "run_id": "GKfs47htpwM4cC9aiC37Ev",
+   "created": "2026-11-16T07:06:07+00:00",
+   "model": "openai-api/opencode/beam-free",
+   "evaluation_target": "beam-1.0@api@opencode-free@max",
+   "family": "minguo_year",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "default",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "43b3dcd030f96b3f7c9a515fbefca953939cc3535754cbe04b21dbb800733d1a",
+     "rule_sha256": "b9aedf98520d5c9bea8ef55ae4a2c2a84557d99bf80c72d8e2c1647d2bbc36f5",
+     "templates_sha256": "918d0ae40a90bef622fa52aecf294ce6def01ba569d6314751dda944889b3937",
+     "sampler_sha256": "8aaf5a9a31ad5a777db08c335fada82b0303a677e98fb5af939a303483dd7817",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T07-14-30-00-00_minguo-year-admincalc-2026Q4-public_2cuQr8gQRPSPzEgh4b3oAZ.eval",
+   "log_sha256": "7c0159615a82adafedd924199750fdd1d4a067f5f3302f01e628d8bceba04e69",
+   "log_status": "success",
+   "run_id": "oAWJ7QMLVXTBGERVPYF6aS",
+   "created": "2026-11-16T07:14:30+00:00",
+   "model": "openai-api/opencode/deepseek-v4.1-flash",
+   "evaluation_target": "deepseek-v4.1-flash@api@opencode@max",
+   "family": "minguo_year",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "default",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "43b3dcd030f96b3f7c9a515fbefca953939cc3535754cbe04b21dbb800733d1a",
+     "rule_sha256": "b9aedf98520d5c9bea8ef55ae4a2c2a84557d99bf80c72d8e2c1647d2bbc36f5",
+     "templates_sha256": "918d0ae40a90bef622fa52aecf294ce6def01ba569d6314751dda944889b3937",
+     "sampler_sha256": "8aaf5a9a31ad5a777db08c335fada82b0303a677e98fb5af939a303483dd7817",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T07-20-56-00-00_minguo-year-admincalc-2026Q4-public_HbnuXg6R6hQmkdDAeREWQv.eval",
+   "log_sha256": "df4ea32f262aaef21c73f8c359df56716d01e5370fff1e2f2ba6f71a440a4de1",
+   "log_status": "success",
+   "run_id": "M7L3QAZFeiCzqx9foorwuq",
+   "created": "2026-11-16T07:20:56+00:00",
+   "model": "openai-api/opencode/glm-5.3-flash",
+   "evaluation_target": "glm-5.3-flash@api@opencode@max",
+   "family": "minguo_year",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "default",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "43b3dcd030f96b3f7c9a515fbefca953939cc3535754cbe04b21dbb800733d1a",
+     "rule_sha256": "b9aedf98520d5c9bea8ef55ae4a2c2a84557d99bf80c72d8e2c1647d2bbc36f5",
+     "templates_sha256": "918d0ae40a90bef622fa52aecf294ce6def01ba569d6314751dda944889b3937",
+     "sampler_sha256": "8aaf5a9a31ad5a777db08c335fada82b0303a677e98fb5af939a303483dd7817",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T08-52-22-00-00_ban-checksum-admincalc-2026Q4-public_bbmr5eGVTtXGz9PZ35SB9W.eval",
+   "log_sha256": "08184ad9d1829533e098c9176046f2bdc848f68e5c4f2490de5d177723ab1641",
+   "log_status": "success",
+   "run_id": "VP8yF6AevfweADf6PsyeoS",
+   "created": "2026-11-16T08:52:22+00:00",
+   "model": "openai-api/openrouter/recursive/flint-v1.0:free",
+   "evaluation_target": "flint-1.0@api@openrouter-free@max",
+   "family": "ban_checksum",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "max_openrouter",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "17c7c34c4d4f23576d53384dead9feb531598e9038c3edd30221c0e4b88bc584",
+     "rule_sha256": "cb71419fd84d472da989c56800af74d1e6c41a8eb1b24b509480cbef68afc0d8",
+     "templates_sha256": "afb846b005473aef1bdad5cada4c3d69c9c58b103c42f94a1461fe8010566119",
+     "sampler_sha256": "f8c22f4ea1ee9852c534961f9b12cc6035fff9dbd7756ebb1fc0a00a3a88a1f0",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T08-52-53-00-00_ban-checksum-admincalc-2026Q4-public_HL2fzLToS5xaypAXomu8eF.eval",
+   "log_sha256": "299e26aca21caf2ede595edd289928c19575dd788afb7b8036e1663a99c5414c",
+   "log_status": "success",
+   "run_id": "ifGaS8ydsHMWFzcuyNYCdM",
+   "created": "2026-11-16T08:52:53+00:00",
+   "model": "openai-api/lmstudio/breeze2-8b",
+   "evaluation_target": "breeze2-8b@q4ks-gguf@mac-studio-applem1ultra@cot",
+   "family": "ban_checksum",
+   "split": "public",
+   "answer_mode": "cot",
+   "thinking": "default",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "17c7c34c4d4f23576d53384dead9feb531598e9038c3edd30221c0e4b88bc584",
+     "rule_sha256": "cb71419fd84d472da989c56800af74d1e6c41a8eb1b24b509480cbef68afc0d8",
+     "templates_sha256": "afb846b005473aef1bdad5cada4c3d69c9c58b103c42f94a1461fe8010566119",
+     "sampler_sha256": "f8c22f4ea1ee9852c534961f9b12cc6035fff9dbd7756ebb1fc0a00a3a88a1f0",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T09-07-35-00-00_minguo-year-admincalc-2026Q4-public_4xYTtcJLRzuw3Vvnf3R8ZQ.eval",
+   "log_sha256": "ef29977393976b9f5bc774c8fcef894d2602e07d3eab389be66bde641bf4dd81",
+   "log_status": "success",
+   "run_id": "UucjNZVqqnMCWt3PKmi3Mh",
+   "created": "2026-11-16T09:07:35+00:00",
+   "model": "openai-api/lmstudio/breeze2-8b",
+   "evaluation_target": "breeze2-8b@q4ks-gguf@mac-studio-applem1ultra@cot",
+   "family": "minguo_year",
+   "split": "public",
+   "answer_mode": "cot",
+   "thinking": "default",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "43b3dcd030f96b3f7c9a515fbefca953939cc3535754cbe04b21dbb800733d1a",
+     "rule_sha256": "b9aedf98520d5c9bea8ef55ae4a2c2a84557d99bf80c72d8e2c1647d2bbc36f5",
+     "templates_sha256": "918d0ae40a90bef622fa52aecf294ce6def01ba569d6314751dda944889b3937",
+     "sampler_sha256": "8aaf5a9a31ad5a777db08c335fada82b0303a677e98fb5af939a303483dd7817",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T09-10-42-00-00_ban-checksum-admincalc-2026Q4-public_gTYeGH6YNTxYbaVj9MqPUS.eval",
+   "log_sha256": "fcf21e47dfbefae1cdd560e7bbe6df458f3ce2a746e9de9924ecf01c6ac01590",
+   "log_status": "success",
+   "run_id": "Eq2YWWdiDhT6Qr7d2RXgap",
+   "created": "2026-11-16T09:10:42+00:00",
+   "model": "openai-api/lmstudio/taide-12b-2602",
+   "evaluation_target": "taide-12b-2602@q4km-gguf@mac-studio-applem1ultra@cot",
+   "family": "ban_checksum",
+   "split": "public",
+   "answer_mode": "cot",
+   "thinking": "default",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "17c7c34c4d4f23576d53384dead9feb531598e9038c3edd30221c0e4b88bc584",
+     "rule_sha256": "cb71419fd84d472da989c56800af74d1e6c41a8eb1b24b509480cbef68afc0d8",
+     "templates_sha256": "afb846b005473aef1bdad5cada4c3d69c9c58b103c42f94a1461fe8010566119",
+     "sampler_sha256": "f8c22f4ea1ee9852c534961f9b12cc6035fff9dbd7756ebb1fc0a00a3a88a1f0",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T09-15-05-00-00_ban-checksum-admincalc-2026Q4-public_buzyZbkyAZcH7Ft3u85k6H.eval",
+   "log_sha256": "ad0ef8af9523a8e38e0a5345710863e9ee753da3667902ac99a4792b5b1e5077",
+   "log_status": "success",
+   "run_id": "faA5PWsv2sJSHfKJLb5SiH",
+   "created": "2026-11-16T09:15:05+00:00",
+   "model": "openai-api/openrouter/openai/gpt-oss-20b",
+   "evaluation_target": "gpt-oss-20b@mxfp4@openrouter@max",
+   "family": "ban_checksum",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "high_openrouter_mxfp4",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "17c7c34c4d4f23576d53384dead9feb531598e9038c3edd30221c0e4b88bc584",
+     "rule_sha256": "cb71419fd84d472da989c56800af74d1e6c41a8eb1b24b509480cbef68afc0d8",
+     "templates_sha256": "afb846b005473aef1bdad5cada4c3d69c9c58b103c42f94a1461fe8010566119",
+     "sampler_sha256": "f8c22f4ea1ee9852c534961f9b12cc6035fff9dbd7756ebb1fc0a00a3a88a1f0",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T09-24-56-00-00_minguo-year-admincalc-2026Q4-public_BGJybSy5iNaoKoaRQZvGiA.eval",
+   "log_sha256": "d1ba5463d9a446afad37987416a3343b769c676507f2a7933ee0f6dfe8342892",
+   "log_status": "success",
+   "run_id": "mNeDKGoGoX9KyCHDMN9SCc",
+   "created": "2026-11-16T09:24:56+00:00",
+   "model": "openai-api/lmstudio/taide-12b-2602",
+   "evaluation_target": "taide-12b-2602@q4km-gguf@mac-studio-applem1ultra@cot",
+   "family": "minguo_year",
+   "split": "public",
+   "answer_mode": "cot",
+   "thinking": "default",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "43b3dcd030f96b3f7c9a515fbefca953939cc3535754cbe04b21dbb800733d1a",
+     "rule_sha256": "b9aedf98520d5c9bea8ef55ae4a2c2a84557d99bf80c72d8e2c1647d2bbc36f5",
+     "templates_sha256": "918d0ae40a90bef622fa52aecf294ce6def01ba569d6314751dda944889b3937",
+     "sampler_sha256": "8aaf5a9a31ad5a777db08c335fada82b0303a677e98fb5af939a303483dd7817",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T09-25-50-00-00_minguo-year-admincalc-2026Q4-public_LvV7vAs6A9v5mufyBcKjb5.eval",
+   "log_sha256": "dc42210b3c083526af3064e41ee35cdba736be6657d6642903ddd84f0a31f35c",
+   "log_status": "success",
+   "run_id": "nys3VikYHL64G4mamTBAFh",
+   "created": "2026-11-16T09:25:50+00:00",
+   "model": "openai-api/openrouter/openai/gpt-oss-20b",
+   "evaluation_target": "gpt-oss-20b@mxfp4@openrouter@max",
+   "family": "minguo_year",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "high_openrouter_mxfp4",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "43b3dcd030f96b3f7c9a515fbefca953939cc3535754cbe04b21dbb800733d1a",
+     "rule_sha256": "b9aedf98520d5c9bea8ef55ae4a2c2a84557d99bf80c72d8e2c1647d2bbc36f5",
+     "templates_sha256": "918d0ae40a90bef622fa52aecf294ce6def01ba569d6314751dda944889b3937",
+     "sampler_sha256": "8aaf5a9a31ad5a777db08c335fada82b0303a677e98fb5af939a303483dd7817",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T09-36-54-00-00_minguo-year-admincalc-2026Q4-public_epbPECdwd8926vnVUCe8kN.eval",
+   "log_sha256": "66375955854feb49fb8d7c6dadf7f6be2794cd5043e9e9954b40c197e519fb93",
+   "log_status": "success",
+   "run_id": "WodT5Gdxr4fQsommGe8mnY",
+   "created": "2026-11-16T09:36:54+00:00",
+   "model": "openai-api/openrouter/recursive/flint-v1.0:free",
+   "evaluation_target": "flint-1.0@api@openrouter-free@max",
+   "family": "minguo_year",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "max_openrouter",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "43b3dcd030f96b3f7c9a515fbefca953939cc3535754cbe04b21dbb800733d1a",
+     "rule_sha256": "b9aedf98520d5c9bea8ef55ae4a2c2a84557d99bf80c72d8e2c1647d2bbc36f5",
+     "templates_sha256": "918d0ae40a90bef622fa52aecf294ce6def01ba569d6314751dda944889b3937",
+     "sampler_sha256": "8aaf5a9a31ad5a777db08c335fada82b0303a677e98fb5af939a303483dd7817",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T10-25-50-00-00_ban-checksum-admincalc-2026Q4-public_DgFbq3bQuHNTPELG5EBDmT.eval",
+   "log_sha256": "a77143d46717363bbae35df2b5db6429f7dd092bfd69c4f8e5197994fb5f82a6",
+   "log_status": "success",
+   "run_id": "6xWZgcGaHAwskgkQeom85i",
+   "created": "2026-11-16T10:25:50+00:00",
+   "model": "openai-api/antgroup/qwen3.8-flash",
+   "evaluation_target": "qwen3.8-flash@api@bailian@max",
+   "family": "ban_checksum",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "enable_dashscope",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "17c7c34c4d4f23576d53384dead9feb531598e9038c3edd30221c0e4b88bc584",
+     "rule_sha256": "cb71419fd84d472da989c56800af74d1e6c41a8eb1b24b509480cbef68afc0d8",
+     "templates_sha256": "afb846b005473aef1bdad5cada4c3d69c9c58b103c42f94a1461fe8010566119",
+     "sampler_sha256": "f8c22f4ea1ee9852c534961f9b12cc6035fff9dbd7756ebb1fc0a00a3a88a1f0",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T11-59-55-00-00_minguo-year-admincalc-2026Q4-public_nMbix6EDVGKoopeFdTNqFL.eval",
+   "log_sha256": "1cb9ac17cec35f61b4bb9af3774aa58b2b5edc5b793734c2d54c7ab26c56557a",
+   "log_status": "success",
+   "run_id": "Uh23DCHVF8VAdGZbXVyUwa",
+   "created": "2026-11-16T11:59:55+00:00",
+   "model": "openai-api/antgroup/qwen3.8-flash",
+   "evaluation_target": "qwen3.8-flash@api@bailian@max",
+   "family": "minguo_year",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "enable_dashscope",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "43b3dcd030f96b3f7c9a515fbefca953939cc3535754cbe04b21dbb800733d1a",
+     "rule_sha256": "b9aedf98520d5c9bea8ef55ae4a2c2a84557d99bf80c72d8e2c1647d2bbc36f5",
+     "templates_sha256": "918d0ae40a90bef622fa52aecf294ce6def01ba569d6314751dda944889b3937",
+     "sampler_sha256": "8aaf5a9a31ad5a777db08c335fada82b0303a677e98fb5af939a303483dd7817",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T12-51-56-00-00_ban-checksum-admincalc-2026Q4-public_2VDkwv3iQQwTwL5Hfa7rPi.eval",
+   "log_sha256": "f80584a0325c1e822b12cd1717707e8739542200122bf3f286719cfd592a44fc",
+   "log_status": "success",
+   "run_id": "d39VNzrtagmt35kKhDPVzi",
+   "created": "2026-11-16T12:51:56+00:00",
+   "model": "openai-api/antgroup/qwen3.8-27b",
+   "evaluation_target": "qwen3.8-27b@api@bailian@max",
+   "family": "ban_checksum",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "enable_dashscope",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "17c7c34c4d4f23576d53384dead9feb531598e9038c3edd30221c0e4b88bc584",
+     "rule_sha256": "cb71419fd84d472da989c56800af74d1e6c41a8eb1b24b509480cbef68afc0d8",
+     "templates_sha256": "afb846b005473aef1bdad5cada4c3d69c9c58b103c42f94a1461fe8010566119",
+     "sampler_sha256": "f8c22f4ea1ee9852c534961f9b12cc6035fff9dbd7756ebb1fc0a00a3a88a1f0",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  },
+  {
+   "log_file": "2026-11-16T14-07-45-00-00_minguo-year-admincalc-2026Q4-public_WwSshdhEzYD2matipN8aTh.eval",
+   "log_sha256": "f9608942d3f97dbc1ad7b990126a3b025878043d53a754995225dc916223147a",
+   "log_status": "error",
+   "run_id": "XVrvcbNmEvojPBRzZZvD9v",
+   "created": "2026-11-16T14:07:45+00:00",
+   "model": "openai-api/antgroup/qwen3.8-27b",
+   "evaluation_target": "qwen3.8-27b@api@bailian@max",
+   "family": "minguo_year",
+   "split": "public",
+   "answer_mode": "direct",
+   "thinking": "enable_dashscope",
+   "fake": null,
+   "versions": [
+    {
+     "family_version": "0.1.1",
+     "spec_sha256": "43b3dcd030f96b3f7c9a515fbefca953939cc3535754cbe04b21dbb800733d1a",
+     "rule_sha256": "b9aedf98520d5c9bea8ef55ae4a2c2a84557d99bf80c72d8e2c1647d2bbc36f5",
+     "templates_sha256": "918d0ae40a90bef622fa52aecf294ce6def01ba569d6314751dda944889b3937",
+     "sampler_sha256": "8aaf5a9a31ad5a777db08c335fada82b0303a677e98fb5af939a303483dd7817",
+     "generator_version": "0.6.0"
+    }
+   ],
+   "n_items": 100
+  }
+ ]
+}

@@ -1,0 +1,65 @@
+{
+ "family": "ban_checksum",
+ "family_version": "0.1.1",
+ "family_status": "reviewed",
+ "spec_sha256": "17c7c34c4d4f23576d53384dead9feb531598e9038c3edd30221c0e4b88bc584",
+ "rule_sha256": "cb71419fd84d472da989c56800af74d1e6c41a8eb1b24b509480cbef68afc0d8",
+ "templates_sha256": "afb846b005473aef1bdad5cada4c3d69c9c58b103c42f94a1461fe8010566119",
+ "sampler_sha256": "f8c22f4ea1ee9852c534961f9b12cc6035fff9dbd7756ebb1fc0a00a3a88a1f0",
+ "generator_version": "0.6.0",
+ "release": "admincalc-2026Q4",
+ "split": "public",
+ "salt": "taiwaneval-public-2026",
+ "n": 100,
+ "rejected": 0,
+ "lineage": {
+  "laws": {},
+  "sources": {
+   "mof-ban-checksum": {
+    "source_type": "announcement",
+    "title": "營利事業統一編號檢查碼邏輯修正說明（附件）",
+    "publisher": "財政部財政資訊中心",
+    "published_on": "2021-12-22",
+    "document_number": null,
+    "version": null,
+    "bronze_sha256": "ade10f01b9146834f65c1d7f3387bcefc6c013535517ccf7ea98a42a7f5da825",
+    "fetched_at": "2026-11-13T03:13:47+08:00"
+   }
+  }
+ },
+ "as_of": "2026-11-16",
+ "diversity": {
+  "template_counts": {
+   "D01": 4,
+   "D02": 2,
+   "D03": 4,
+   "D04": 4,
+   "D05": 3,
+   "D06": 3,
+   "L01": 5,
+   "L02": 5,
+   "L03": 6,
+   "L04": 4,
+   "L05": 5,
+   "L06": 5,
+   "T01": 6,
+   "T02": 4,
+   "T03": 3,
+   "T04": 6,
+   "T05": 4,
+   "T06": 6,
+   "T07": 5,
+   "T08": 5,
+   "T09": 6,
+   "T10": 5
+  },
+  "max_template_share": 0.06,
+  "max_template_share_cap": 0.15,
+  "skeletons": 98,
+  "near_duplicates": 0,
+  "max_skeleton_reuse": 1,
+  "param_duplicates": 0,
+  "pairs": 8,
+  "paired_items": 16
+ }
+}
